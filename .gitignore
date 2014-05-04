@@ -23,4 +23,11 @@
 *.hex
 
 bcstack
-platform/stm32/*
+*.Administrator
+
+*.bak
+
+platform/stm32/common/MDK-ARM/STM32F401-Discovery/*
+*.dep
+
+*.lst
