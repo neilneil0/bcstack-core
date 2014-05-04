@@ -14,32 +14,24 @@
    limitations under the License.
 */
 
-#include <stdio.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <fcntl.h>
-#include <termios.h>
-#include <unistd.h>
-
-#if USE_LIBUSB
-#include <libusb.h>
-#endif
-
-#include "bluetooth/app.h"
 #include "bluetooth/host.h"
 
-u8 bt_exit = 0;
-
-int main(int argc, char** argv)
+void hci_setup(void)
 {
-    app_setup();
+}
 
-	while (!bt_exit) {
-        app_loop();
-	}
+void hci_shutdown(void)
+{
+}
 
-	return 0;
+void hci_write_later(u8 channel)
+{
+}
+
+void hci_write(u8 channel, u16 size)
+{
+}
+
+void hci_loop(void)
+{
 }

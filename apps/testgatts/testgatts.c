@@ -35,7 +35,7 @@ struct {
 
 #define BUFFER_SIZE 32
 
-void bt_setup(void)
+void app_setup(void)
 {
     u8 nvec = sizeof(testvec) / sizeof(testvec[0]);
     u8 buffer[BUFFER_SIZE];
@@ -47,6 +47,7 @@ void bt_setup(void)
     printf("test gatts\n");
 
     battery_set_level(0x3f);
+    accel_set_xyz(0xA1, 0xA2, 0xA3);
 
 #if DEBUG
     bt_gatts_print();
@@ -61,7 +62,11 @@ void bt_setup(void)
     }
 }
 
-void bt_loop(void)
+void app_loop(void)
 {
     bt_exit = 1;
+}
+
+void app_shutdown(void)
+{
 }

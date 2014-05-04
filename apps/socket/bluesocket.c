@@ -16,16 +16,23 @@
 
 #include "bluetooth/app.h"
 
-void bt_setup(void)
+void app_setup(void)
 {
+    bt_host_setup();
     gap_reset();
     gap_set_visible(1);
 }
 
-void bt_loop(void)
+void app_loop(void)
 {
     static u8 count = 0;
     count++;
 
+    bt_host_loop();
     battery_set_level(count);
+}
+
+void app_shutdown(void)
+{
+    bt_host_shutdown();
 }

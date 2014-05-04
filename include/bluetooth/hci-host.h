@@ -22,11 +22,11 @@
 #define BT_ACL_IN_CHANNEL  3
 #define BT_ACL_OUT_CHANNEL 4
 
-void hci_open(void);
-void hci_close(void);
+void hci_setup(void);
+void hci_shutdown(void);
 void hci_write_later(u8 channel);
 void hci_write(u8 channel, u16 size);
-int hci_poll(void);
+void hci_loop(void);
 
 void hci_handle_transport_event(u8 channel, u8* buffer, u16 size);
 

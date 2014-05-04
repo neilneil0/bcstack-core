@@ -34,6 +34,14 @@ typedef struct _bt_gatt_service_t {
 
 #define BT_NUM_ATTRS(table) (sizeof(table) / sizeof(bt_attr_t))
 
+#define GATT_WRITE_CHAR_DECL(_buffer, _handle, _uuid, _props, _size)    \
+    do {                                                                \
+        (_buffer)[0] = (_props);                                        \
+        bt_write_u16((_buffer) + 1, (_handle) + 1);                     \
+        bt_write_u16((_buffer) + 3, (_uuid));                           \
+        *(_size) = 5;                                                   \
+    } while(0)
+
 void bt_gatts_print(void);
 void bt_gatts_handle_request(u8* req, u16 reqlen, u8* rsp, u16* rsplen);
 u8 bt_gatts_write(u16 handle, u8* value, u8 vlen);

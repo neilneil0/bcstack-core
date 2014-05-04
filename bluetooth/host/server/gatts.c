@@ -26,6 +26,7 @@ static const bt_gatt_service_t null_service = {
 static const bt_gatt_service_t *services[] = {
     &null_service,
     &bt_battery_service,
+    &bt_accel_service,
 };
 static const u8 services_num = sizeof(services)/sizeof(bt_gatt_service_t*);
 static u8 client_mtu;
@@ -182,7 +183,7 @@ static u8 bt_gatts_find(u16 start_handle, u16 end_handle,
                         u16 flags,
                         u8* buffer, u16* size)
 {
-#define BUFFERSIZE 8
+#define BUFFERSIZE 32
     u8 i, j;
     u8 start_service = start_handle >> 8;
     u8 end_service = end_handle >> 8;

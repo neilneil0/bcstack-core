@@ -53,7 +53,7 @@ static struct bcsp_globals_t {
     } flags;
 } bcsp;
 
-void hci_open()
+void hci_setup(void)
 {
     u8 activity, delay;
     int timeout;
@@ -98,7 +98,7 @@ void hci_open()
     bcsp_info("ubcsp initialized\n");
 }
 
-void hci_close()
+void hci_shutdown(void)
 {
     bt_uart_close();
 }
@@ -135,7 +135,7 @@ void hci_write(u8 channel, u16 size)
 	ubcsp_send_packet(&bcsp.txpkt);
 }
 
-int hci_poll()
+void hci_loop(void)
 {
     u8 delay, activity;
 
@@ -172,6 +172,4 @@ int hci_poll()
     if (delay) {
         usleep(delay * 100);
     }
-
-    return 0;
 }

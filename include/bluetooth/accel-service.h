@@ -14,32 +14,10 @@
    limitations under the License.
 */
 
-#include <stdio.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <fcntl.h>
-#include <termios.h>
-#include <unistd.h>
+#ifndef _ACCEL_SERVICE_H_
+#define _ACCEL_SERVICE_H_
 
-#if USE_LIBUSB
-#include <libusb.h>
-#endif
+extern const bt_gatt_service_t bt_accel_service;
+void accel_set_xyz(u8 x, u8 y, u8 z);
 
-#include "bluetooth/app.h"
-#include "bluetooth/host.h"
-
-u8 bt_exit = 0;
-
-int main(int argc, char** argv)
-{
-    app_setup();
-
-	while (!bt_exit) {
-        app_loop();
-	}
-
-	return 0;
-}
+#endif // _ACCEL_SERVICE_H_

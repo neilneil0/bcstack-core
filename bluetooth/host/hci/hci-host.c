@@ -387,18 +387,23 @@ static void hci_send_acl(u8* buffer, u16 len)
     hci.acl_in_data = NULL;
 }
 
-void gap_open()
+void bt_host_setup(void)
 {
     memset(&hci, 0, sizeof(hci));
     hci.ncmds = 1;  //TODO: set this dynamically
     hci.curr_reset_cmd = hci_reset_seq;
 
-    hci_open();
+    hci_setup();
 }
 
-void gap_close()
+void bt_host_loop(void)
 {
-    hci_close();
+    hci_loop();
+}
+
+void bt_host_shutdown(void)
+{
+    hci_shutdown();
 }
 
 void gap_reset()

@@ -28,7 +28,7 @@ void battery_set_level(u8 _level)
 
 static void battery_attr_read(u16 handle, u8* buffer, u16* size, u16 offset)
 {
-    switch (handle & 0xF) {
+    switch (handle & 0xff) {
     case 0:
         bt_write_u16(buffer, 0x180F);
         *size = 2;

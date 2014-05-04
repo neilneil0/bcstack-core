@@ -20,10 +20,15 @@
 #include "bluetooth/common.h"
 #include "bluetooth/gatts.h"
 #include "bluetooth/battery-service.h"
+#include "bluetooth/accel-service.h"
 #include "bluetooth/hci-host.h"
 #if 0
 #include "device-info-service.h"
 #include "socket-service.h"
 #endif
+
+void bt_host_setup(void);
+void bt_host_loop(void);
+void bt_host_shutdown(void);
 
 #endif // _BLUETOOTH_HOST_H

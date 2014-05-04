@@ -100,7 +100,7 @@ static void LIBUSB_CALL usb_cb(struct libusb_transfer *transfer)
     usb_info("\n");
 }
 
-void hci_open()
+void hci_setup(void)
 {
 	int r;
 
@@ -168,7 +168,7 @@ out:
     return r;
 }
 
-void hci_close()
+void hci_shutdown(void)
 {
 	libusb_exit(NULL);
 }
@@ -221,7 +221,7 @@ void hci_write(u8 channel, u16 size)
     }
 }
 
-int hci_poll()
+void hci_loop(void)
 {
-    return libusb_handle_events(NULL);
+    libusb_handle_events(NULL);
 }

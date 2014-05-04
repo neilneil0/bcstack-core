@@ -26,7 +26,7 @@
 #define UUID_INCLUDE                      0x2802
 #define UUID_CHAR                         0x2803
 #define UUID_CHAR_EXT_PROP                0x2900
-#define UUID_CHAR_USR_DESC                0x2901
+#define UUID_CHAR_USER_DESC                0x2901
 #define UUID_CLIENT_CHAR_CFG              0x2902
 #define UUID_SERVER_CHAR_CFG              0x2903
 #define UUID_CHAR_FORMAT                  0x2904
