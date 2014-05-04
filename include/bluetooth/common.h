@@ -24,6 +24,7 @@
 #include "bluetooth/spec/att.h"
 #include "bluetooth/spec/gatt.h"
 #include "bluetooth/spec/hci.h"
+#include "bluetooth/gap.h"
 
 #if DEBUG
 void bt_dumphex(char* msg, const u8* v, u16 len);

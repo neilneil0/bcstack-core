@@ -17,9 +17,9 @@
 #ifndef _GAP_H_
 #define _GAP_H_
 
-void gap_open();
-void gap_close();
-void gap_reset();
+void gap_open(void);
+void gap_close(void);
+void gap_reset(void);
 void gap_set_visible(int v);
 
 #endif // _GAP_H_
