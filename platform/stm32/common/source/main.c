@@ -18,10 +18,8 @@
 #include "bluetooth/host.h"
 #include "bluetooth/app.h"
 
-#define BT_UART_LOOPBACK 0
-
 #if BT_UART_LOOPBACK
-static void bt_uart_loopback(void);
+void bt_uart_loopback(void);
 #endif
 
 static void SystemClock_Config(void);
@@ -40,6 +38,11 @@ int main(void)
 
     SystemClock_Config();  
 
+#if (HAVE_SHELL)
+    dbguart_open();
+    printf("bcstack on stm32\n");
+#endif
+
 #if BT_UART_LOOPBACK
     bt_uart_loopback();
 #endif
@@ -50,28 +53,6 @@ int main(void)
         app_loop();
 	}
 }
-
-#if BT_UART_LOOPBACK
-u8 tmp[32];
-static void bt_uart_loopback(void)
-{
-    void bt_uart_open(void);
-    void bt_uart_close(void);
-    void bt_uart_write (u8 c);
-    u8 bt_uart_read(u8* c);
-    static u8 i;
-        u8 c;
-    bt_uart_open();
-
-    while (1) {
-#if 1
-        if (bt_uart_read(&c)) {
-            bt_uart_write(c);
-        }
-#endif
-    }
-}
-#endif
 
 static void SystemClock_Config(void)
 {
@@ -116,11 +97,6 @@ void usleep(int ms)
     int i;
 
     for (i=0; i<1000000; i++);
-}
-
-int fputc(int ch, FILE *f) 
-{
-    return ch;
 }
 
 #ifdef  USE_FULL_ASSERT

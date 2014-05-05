@@ -38,8 +38,8 @@
 
 UART_HandleTypeDef btuart;
 static __IO ITStatus ready = RESET;
-static __IO ITStatus txbusy = RESET;
 
+//TODO: this is toooo big. make it smaller in final version
 #define BT_UART_FIFO_SIZE 256
 
 static struct{
@@ -83,7 +83,7 @@ void bt_uart_open(void)
     }
 
     memset(&rxfifo, 0, sizeof(rxfifo));
-    memset(&rxfifo, 0, sizeof(txfifo));
+    memset(&txfifo, 0, sizeof(txfifo));
 }
 
 void bt_uart_close(void)
@@ -99,7 +99,7 @@ void bt_uart_close(void)
 
 void bt_uart_write (u8 c)
 {
-    if (txfifo.wrptr + 1 != rxfifo.rdptr) {
+    if (txfifo.wrptr + 1 != txfifo.rdptr) {
         txfifo.buffer[txfifo.wrptr++] = c;
     }
     __HAL_UART_ENABLE_IT(&btuart, UART_IT_TXE);
@@ -184,3 +184,17 @@ void BTUART_IRQHandler(void)
     __HAL_UART_CLEAR_FLAG(&btuart, UART_FLAG_RXNE);
   }
 }
+
+#if BT_UART_LOOPBACK
+void bt_uart_loopback(void)
+{
+    u8 c;
+    bt_uart_open();
+
+    while (1) {
+        if (bt_uart_read(&c)) {
+            bt_uart_write(c);
+        }
+    }
+}
+#endif
