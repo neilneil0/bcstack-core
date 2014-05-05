@@ -19,6 +19,9 @@
 
 #define ATT_MTU 23
 
+#define LED_BASE_UUID           0xFF10
+#define ACCEL_BASE_UUID         0xFFA0
+
 typedef struct _bt_attr_t {
     u32 type; //internal representation of UUID
     u8  permission;

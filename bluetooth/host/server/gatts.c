@@ -16,6 +16,8 @@
 
 #include "bluetooth/host.h"
 
+extern const bt_gatt_service_t bt_led_service;
+
 static const bt_gatt_service_t null_service = {
     NULL,
     0,
@@ -29,6 +31,7 @@ static const bt_gatt_service_t *services[] = {
     &bt_accel_service,
     &bt_blood_pressure_service,
     &bt_devinfo_service,
+    &bt_led_service,
 };
 static const u8 services_num = sizeof(services)/sizeof(bt_gatt_service_t*);
 static u8 client_mtu;

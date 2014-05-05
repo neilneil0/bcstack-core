@@ -32,12 +32,12 @@ CFLAGS += -DDEBUG=1 -g
 endif
 
 ifeq ($(TRANSPORT),usb)
-CFLAGS += `pkg-config libusb-1.0 --cflags` -DUSE_LIBUSB=1
+CFLAGS += `pkg-config libusb-1.0 --cflags` -DUSE_LIBUSB=1 -DINIT_CMD_NUM=1
 LDFLAGS += `pkg-config libusb-1.0 --libs`
 endif
 
 ifeq ($(TRANSPORT),bcsp)
-CFLAGS += -DUSE_BTUART=1
+CFLAGS += -DUSE_BTUART=1 -DINIT_CMD_NUM=0
 endif
 
 .PHONY: all clean

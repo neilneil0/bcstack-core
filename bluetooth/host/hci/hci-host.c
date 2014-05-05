@@ -390,7 +390,7 @@ static void hci_send_acl(u8* buffer, u16 len)
 void bt_host_setup(void)
 {
     memset(&hci, 0, sizeof(hci));
-    hci.ncmds = 0;  //TODO: set this dynamically
+    hci.ncmds = INIT_CMD_NUM;
     hci.curr_reset_cmd = hci_reset_seq;
 
     hci_setup();
