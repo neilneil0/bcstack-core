@@ -41,6 +41,7 @@ int main(void)
 #if (HAVE_SHELL)
     dbguart_open();
     printf("welcome to bcstack\n");
+    HAL_Delay(1000);
     printf("platform = stm32\n");
 #endif
 
@@ -122,9 +123,7 @@ void Error_Handler(void)
 
 void usleep(int ms)
 {
-    int i;
-
-    for (i=0; i<1000000; i++);
+    HAL_Delay(100);
 }
 
 #ifdef  USE_FULL_ASSERT

@@ -16,12 +16,12 @@
 
 #include "bluetooth/host.h"
 
-#define ACCEL_SERVICE_UUID            (LED_BASE_UUID + 0)
-#define ACCEL_ENABLER_UUID            (LED_BASE_UUID + 1)
-#define ACCEL_RANGE_UUID              (LED_BASE_UUID + 2)
-#define ACCEL_X_UUID                  (LED_BASE_UUID + 3)
-#define ACCEL_Y_UUID                  (LED_BASE_UUID + 4)
-#define ACCEL_Z_UUID                  (LED_BASE_UUID + 5)
+#define ACCEL_SERVICE_UUID            (ACCEL_BASE_UUID + 0)
+#define ACCEL_ENABLER_UUID            (ACCEL_BASE_UUID + 1)
+#define ACCEL_RANGE_UUID              (ACCEL_BASE_UUID + 2)
+#define ACCEL_X_UUID                  (ACCEL_BASE_UUID + 3)
+#define ACCEL_Y_UUID                  (ACCEL_BASE_UUID + 4)
+#define ACCEL_Z_UUID                  (ACCEL_BASE_UUID + 5)
   
 #define ACCEL_RANGE_2G                20
 #define ACCEL_RANGE_8G                80
