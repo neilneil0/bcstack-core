@@ -26,8 +26,7 @@ int fputc(int ch, FILE *f)
 #else // HAVE_SHELL
 
 #define DBGPORT                           USART6
-#define DBGPORT_CLK_ENABLE()              __USART6_CLK_ENABLE();
-#define DBGPORT_RX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE()
+#define DBGPORT_CLK_ENABLE()              __USART6_CLK_ENABLE()
 #define DBGPORT_TX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE() 
 
 #define DBGPORT_FORCE_RESET()             __USART6_FORCE_RESET()
@@ -70,7 +69,7 @@ void dbguart_open(void)
     HAL_NVIC_EnableIRQ(DBGPORT_IRQn);
 
     dbgport.Instance        = DBGPORT;
-    dbgport.Init.BaudRate   = 921600;
+    dbgport.Init.BaudRate   = 115200;
     dbgport.Init.WordLength = UART_WORDLENGTH_8B;
     dbgport.Init.StopBits   = UART_STOPBITS_1;
     dbgport.Init.Parity     = UART_PARITY_NONE;

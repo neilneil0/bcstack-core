@@ -40,7 +40,8 @@ int main(void)
 
 #if (HAVE_SHELL)
     dbguart_open();
-    printf("bcstack on stm32\n");
+    printf("welcome to bcstack\n");
+    printf("platform = stm32\n");
 #endif
 
 #if BT_UART_LOOPBACK
