@@ -55,6 +55,33 @@ int main(void)
 	}
 }
 
+void led_state_changed(u8 new_state)
+{
+    if (new_state & 0x1) {
+        BSP_LED_On(LED3);
+    } else {
+        BSP_LED_Off(LED3);
+    }
+
+    if (new_state & 0x2) {
+        BSP_LED_On(LED4);
+    } else {
+        BSP_LED_Off(LED4);
+    }
+
+    if (new_state & 0x4) {
+        BSP_LED_On(LED5);
+    } else {
+        BSP_LED_Off(LED5);
+    }
+
+    if (new_state & 0x8) {
+        BSP_LED_On(LED6);
+    } else {
+        BSP_LED_Off(LED6);
+    }
+}
+
 static void SystemClock_Config(void)
 {
     RCC_ClkInitTypeDef RCC_ClkInitStruct;
