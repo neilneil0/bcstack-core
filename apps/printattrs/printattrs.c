@@ -14,14 +14,24 @@
    limitations under the License.
 */
 
-#ifndef _BLUETOOTH_HOST_H
-#define _BLUETOOTH_HOST_H
+#include "bluetooth/app.h"
+#include "bluetooth/host.h"
 
-#include "bluetooth/common.h"
-#include "bluetooth/hci-host.h"
+void app_setup(void)
+{
+    printf("print attribute table \n");
 
-void bt_host_setup(void);
-void bt_host_loop(void);
-void bt_host_shutdown(void);
+    battery_set_level(0x3f);
+    accel_set_xyz(0xA1, 0xA2, 0xA3);
 
-#endif // _BLUETOOTH_HOST_H
+    bt_gatts_print();
+}
+
+void app_loop(void)
+{
+    bt_exit = 1;
+}
+
+void app_shutdown(void)
+{
+}

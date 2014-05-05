@@ -36,6 +36,10 @@ CFLAGS += `pkg-config libusb-1.0 --cflags` -DUSE_LIBUSB=1
 LDFLAGS += `pkg-config libusb-1.0 --libs`
 endif
 
+ifeq ($(TRANSPORT),bcsp)
+CFLAGS += -DUSE_BTUART=1
+endif
+
 .PHONY: all clean
 
 all: $(PROGRAM)

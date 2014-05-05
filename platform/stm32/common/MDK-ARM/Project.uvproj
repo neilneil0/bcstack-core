@@ -574,6 +574,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\bluetooth\host\server\accel-service.c</FilePath>
             </File>
+            <File>
+              <FileName>blood-pressure-service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\host\server\blood-pressure-service.c</FilePath>
+            </File>
+            <File>
+              <FileName>devinfo-service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\host\server\devinfo-service.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

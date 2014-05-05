@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-#ifndef _DEVICE_INFO_SERVICE_H_
-#define _DEVICE_INFO_SERVICE_H_
+#ifndef _DEVINFO_SERVICE_H_
+#define _DEVINFO_SERVICE_H_
 
 typedef struct {
     const char* manufacturer_name;
@@ -24,13 +24,12 @@ typedef struct {
     const char* hardware_revision;
     const char* firmware_revision;
     const char* software_revision;
-    // System ID
-    // IEEE 11073-20601 Regulatory Certification Data List
-    // PnP ID
-} bt_device_info_t;
+    const char* system_id;
+    const char* ieee_data;
+    const char* pnp_id;
+} bt_devinfo_t;
 
-extern const bt_gatt_service_t device_info_service;
+extern const bt_gatt_service_t bt_devinfo_service;
+void devinfo_set(bt_devinfo_t* _devinfo);
 
-void device_info_set(bt_device_info_t* info);
-
-#endif // _DEVICE_INFO_SERVICE_H_
+#endif // _DEVINFO_SERVICE_H_

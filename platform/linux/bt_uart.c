@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+#if USE_BTUART
+
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
@@ -116,3 +118,5 @@ u8 bt_uart_read(u8* c)
 
 	return res > 0 ? res : 0;
 }
+
+#endif

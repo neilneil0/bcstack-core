@@ -27,6 +27,8 @@ static const bt_gatt_service_t *services[] = {
     &null_service,
     &bt_battery_service,
     &bt_accel_service,
+    &bt_blood_pressure_service,
+    &bt_devinfo_service,
 };
 static const u8 services_num = sizeof(services)/sizeof(bt_gatt_service_t*);
 static u8 client_mtu;

@@ -14,14 +14,9 @@
    limitations under the License.
 */
 
-#ifndef _BLUETOOTH_HOST_H
-#define _BLUETOOTH_HOST_H
+#ifndef _BLOOD_PRESSURE_SERVICE_H_
+#define _BLOOD_PRESSURE_SERVICE_H_
 
-#include "bluetooth/common.h"
-#include "bluetooth/hci-host.h"
+extern const bt_gatt_service_t bt_blood_pressure_service;
 
-void bt_host_setup(void);
-void bt_host_loop(void);
-void bt_host_shutdown(void);
-
-#endif // _BLUETOOTH_HOST_H
+#endif // _BLOOD_PRESSURE_SERVICE_H_

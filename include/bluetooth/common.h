@@ -25,6 +25,11 @@
 #include "bluetooth/spec/gatt.h"
 #include "bluetooth/spec/hci.h"
 #include "bluetooth/gap.h"
+#include "bluetooth/gatts.h"
+#include "bluetooth/battery-service.h"
+#include "bluetooth/accel-service.h"
+#include "bluetooth/blood-pressure-service.h"
+#include "bluetooth/devinfo-service.h"
 
 #if DEBUG
 void bt_dumphex(char* msg, const u8* v, u16 len);
