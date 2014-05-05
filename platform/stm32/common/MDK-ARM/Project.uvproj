@@ -359,7 +359,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls>--C99 --gnu</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32F401xC,USE_STM32F401_DISCO,</Define>
+              <Define>USE_HAL_DRIVER,STM32F401xC,USE_STM32F401_DISCO,HAVE_SHELL</Define>
               <Undefine></Undefine>
               <IncludePath>..\Inc;..\..\stm32f4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\stm32f4\Drivers\STM32F4xx_HAL_Driver\inc;..\..\stm32f4\Drivers\BSP\STM32F401-Discovery;..\..\stm32f4\User;..\..\..\..\include;..\..\..\..\include\cpu\generic32</IncludePath>
             </VariousControls>
@@ -533,6 +533,11 @@
               <FileName>bt_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\bt_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\retarget.c</FilePath>
             </File>
           </Files>
         </Group>
