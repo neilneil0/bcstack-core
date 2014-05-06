@@ -113,15 +113,16 @@ static void hci_send_command(u8* buffer, u16 size)
 
     if (hci.ncmds) {
         if (hci.tasks.reset) {
-            if ((hci.curr_reset_cmd[0] == 0) && (hci.curr_reset_cmd[1] == 0)) {
-                hci.tasks.reset = 0;
-            }
-
             cmdlen = hci.curr_reset_cmd[2] + 3;
             memcpy(buffer, hci.curr_reset_cmd, cmdlen);
 
             hci.curr_reset_cmd += cmdlen;
             send_cmd = 1;
+
+            if ((hci.curr_reset_cmd[0] == 0) && (hci.curr_reset_cmd[1] == 0)) {
+                printf("radio initialized\n");
+                hci.tasks.reset = 0;
+            }
         } else if (hci.tasks.set_adv_params) {
             static const u8 le_set_adv_params[] = {
                 6,0x20,	// set adv params
@@ -168,6 +169,8 @@ static void hci_send_command(u8* buffer, u16 size)
             memcpy(buffer, le_set_adv_en, sizeof(le_set_adv_en));
             buffer[3] = hci.state.visible;
             send_cmd = 1;
+
+            printf("adv enabled\n");
         }
 
         if (send_cmd) {

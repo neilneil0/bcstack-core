@@ -123,7 +123,7 @@ void Error_Handler(void)
 
 void usleep(int ms)
 {
-    HAL_Delay(100);
+    HAL_Delay(25);
 }
 
 #ifdef  USE_FULL_ASSERT

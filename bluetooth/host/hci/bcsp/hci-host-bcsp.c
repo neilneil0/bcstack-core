@@ -87,12 +87,7 @@ void hci_setup(void)
 
 		if (delay) {
 			usleep(delay * 100);
-
-			if (timeout++ > 5000) {
-				bcsp_info("Initialization timed out\n");
-                return;
-			}
-		}
+        }
 	}
 
     bcsp_info("ubcsp initialized\n");
