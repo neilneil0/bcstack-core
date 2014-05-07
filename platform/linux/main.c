@@ -28,8 +28,7 @@
 #include <libusb.h>
 #endif
 
-#include "bluetooth/app.h"
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 u8 bt_exit = 0;
 

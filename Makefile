@@ -1,10 +1,8 @@
-APP = none
+APP = printattrs
 PLATFORM = linux
 DEBUG = y
 PROGRAM = bcstack
-TRANSPORT = usb
-CPU=generic32
-HOST = y
+TRANSPORT = null
 
 CC = gcc
 LD = gcc
@@ -12,19 +10,14 @@ LD = gcc
 SRCS = \
 	$(wildcard apps/$(APP)/*.c) \
 	$(wildcard platform/$(PLATFORM)/*.c) \
-	$(wildcard utils/*.c)
-
-ifeq ($(HOST),y)
-SRCS += \
-	$(wildcard bluetooth/host/gap/*.c) \
-	$(wildcard bluetooth/host/hci/*.c) \
-	$(wildcard bluetooth/host/hci/$(TRANSPORT)/*.c) \
-	$(wildcard bluetooth/host/server/*.c)
-endif
+	$(wildcard utils/*.c) \
+	$(wildcard bluetooth/stack/hci/*.c) \
+	$(wildcard bluetooth/stack/hci/$(TRANSPORT)/*.c) \
+	$(wildcard bluetooth/stack/gatt/*.c)
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -I./include -I./include/cpu/$(CPU)
+CFLAGS = -I./bluetooth/include
 LDFLAGS =
 
 ifeq ($(DEBUG),y)
@@ -38,6 +31,10 @@ endif
 
 ifeq ($(TRANSPORT),bcsp)
 CFLAGS += -DUSE_BTUART=1 -DINIT_CMD_NUM=0
+endif
+
+ifeq ($(TRANSPORT),null)
+CFLAGS += -DINIT_CMD_NUM=1
 endif
 
 .PHONY: all clean

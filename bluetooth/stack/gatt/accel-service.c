@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 #define ACCEL_SERVICE_UUID            (ACCEL_BASE_UUID + 0)
 #define ACCEL_ENABLER_UUID            (ACCEL_BASE_UUID + 1)

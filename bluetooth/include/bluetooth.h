@@ -14,22 +14,36 @@
    limitations under the License.
 */
 
-#ifndef _BLUETOOTH_COMMON_H
-#define _BLUETOOTH_COMMON_H
+#ifndef _BLUETOOTH_H
+#define _BLUETOOTH_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "machine.h"
-#include "bluetooth/spec/att.h"
-#include "bluetooth/spec/gatt.h"
-#include "bluetooth/spec/hci.h"
-#include "bluetooth/gap.h"
-#include "bluetooth/gatts.h"
-#include "bluetooth/battery-service.h"
-#include "bluetooth/accel-service.h"
-#include "bluetooth/blood-pressure-service.h"
-#include "bluetooth/devinfo-service.h"
+#include <stdint.h>
+
+typedef uint32_t u32;
+typedef uint16_t u16;
+typedef uint8_t  u8;
+typedef int32_t s32;
+typedef int16_t s16;
+typedef int8_t  s8;
+
+#include "spec/att.h"
+#include "spec/gatt.h"
+#include "spec/hci.h"
+#include "gap.h"
+#include "gatts.h"
+#include "battery-service.h"
+#include "accel-service.h"
+#include "blood-pressure-service.h"
+#include "devinfo-service.h"
+#include "hci.h"
+
+extern u8 bt_exit;
+void bt_setup(void);
+void bt_loop(void);
+void bt_shutdown(void);
 
 #if DEBUG
 void bt_dumphex(char* msg, const u8* v, u16 len);
@@ -46,4 +60,4 @@ void bt_dumphex(char* msg, const u8* v, u16 len);
         (buffer)[1] = (value) >> 8;             \
     } while (0)
 
-#endif // _BLUETOOTH_COMMON_H
+#endif // _BLUETOOTH_H

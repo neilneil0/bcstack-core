@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 #define DEVINFO_SERVICE_UUID              0x180A
 #define DEVINFO_SYSTEM_ID_UUID            0x2A23

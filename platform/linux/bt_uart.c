@@ -25,7 +25,7 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 static int fd;
 

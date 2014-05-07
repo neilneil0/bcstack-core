@@ -36,7 +36,7 @@
 /**                                                                         **/
 /*****************************************************************************/
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 #include "ubcsp.h"
 
 #if SHOW_PACKET_ERRORS || SHOW_LE_STATES

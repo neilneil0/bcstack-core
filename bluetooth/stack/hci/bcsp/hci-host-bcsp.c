@@ -14,7 +14,7 @@
   limitations under the License.
 */
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 #include "ubcsp.h"
 
 #if 1

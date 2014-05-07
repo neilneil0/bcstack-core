@@ -14,24 +14,20 @@
    limitations under the License.
 */
 
-#include "bluetooth/host.h"
+#ifndef _HCI_H_
+#define _HCI_H_
 
-void hci_setup(void)
-{
-}
+#define BT_COMMAND_CHANNEL 1
+#define BT_EVENT_CHANNEL   2
+#define BT_ACL_IN_CHANNEL  3
+#define BT_ACL_OUT_CHANNEL 4
 
-void hci_shutdown(void)
-{
-}
+void hci_setup(void);
+void hci_shutdown(void);
+void hci_write_later(u8 channel);
+void hci_write(u8 channel, u16 size);
+void hci_loop(void);
 
-void hci_write_later(u8 channel)
-{
-}
+void hci_handle_transport_event(u8 channel, u8* buffer, u16 size);
 
-void hci_write(u8 channel, u16 size)
-{
-}
-
-void hci_loop(void)
-{
-}
+#endif //_HCI_H_

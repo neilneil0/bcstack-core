@@ -14,8 +14,7 @@
    limitations under the License.
 */
 
-#include "bluetooth/app.h"
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 struct {
     u16 len;

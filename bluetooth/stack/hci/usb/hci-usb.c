@@ -21,7 +21,7 @@
 #include <string.h>
 #include <libusb.h>
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 struct {
     u16 vid, pid;

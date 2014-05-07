@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-#include "bluetooth/app.h"
+#include "bluetooth.h"
 
 #if DEBUG
 void bt_dumphex(char* msg, const u8* v, u16 len)

@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 void led_state_changed(u8 new_state)
 {

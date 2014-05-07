@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 /*
  * HCI Local Data
@@ -390,7 +390,7 @@ static void hci_send_acl(u8* buffer, u16 len)
     hci.acl_in_data = NULL;
 }
 
-void bt_host_setup(void)
+void bt_setup(void)
 {
     memset(&hci, 0, sizeof(hci));
     hci.ncmds = INIT_CMD_NUM;
@@ -399,12 +399,12 @@ void bt_host_setup(void)
     hci_setup();
 }
 
-void bt_host_loop(void)
+void bt_loop(void)
 {
     hci_loop();
 }
 
-void bt_host_shutdown(void)
+void bt_shutdown(void)
 {
     hci_shutdown();
 }

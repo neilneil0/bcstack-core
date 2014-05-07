@@ -14,9 +14,24 @@
    limitations under the License.
 */
 
-#ifndef _BLUETOOTH_CONTROLLER_H
-#define _BLUETOOTH_CONTROLLER_H
+#include "bluetooth.h"
 
-#include "bluetooth/common.h"
+void hci_setup(void)
+{
+}
 
-#endif // _BLUETOOTH_CONTROLLER_H
+void hci_shutdown(void)
+{
+}
+
+void hci_write_later(u8 channel)
+{
+}
+
+void hci_write(u8 channel, u16 size)
+{
+}
+
+void hci_loop(void)
+{
+}

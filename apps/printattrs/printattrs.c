@@ -14,8 +14,7 @@
    limitations under the License.
 */
 
-#include "bluetooth/app.h"
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 void app_setup(void)
 {

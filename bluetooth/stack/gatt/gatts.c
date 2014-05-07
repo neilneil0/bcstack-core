@@ -14,7 +14,7 @@
   limitations under the License.
 */
 
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 extern const bt_gatt_service_t bt_led_service;
 
