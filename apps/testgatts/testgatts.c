@@ -42,6 +42,7 @@ void app_setup(void)
     u8 value[2];
     u8 retval;
     u8 i;
+    u8 has_response;
 
     printf("test gatts\n");
 
@@ -49,15 +50,20 @@ void app_setup(void)
     accel_set_xyz(0xA1, 0xA2, 0xA3);
 
 #if DEBUG
-    bt_gatts_print();
+    bt_gatt_print();
 #endif
 
     for (i=0; i<nvec; i++) {
         printf("case %d\n", i);
         size = BUFFER_SIZE;
-        bt_dumphex("<<<", testvec[i].value, testvec[i].len);
-        bt_gatts_handle_request(testvec[i].value, testvec[i].len, buffer, &size);
-        bt_dumphex(">>>", buffer, size);
+        bt_dumphex(" IN", testvec[i].value, testvec[i].len);
+        has_response = bt_gatt_input(testvec[i].value, testvec[i].len);
+        if (has_response) {
+            bt_gatt_output(buffer, &size);
+            bt_dumphex("OUT", buffer, size);
+        } else {
+            printf("OUT <>\n");
+        }
     }
 }
 

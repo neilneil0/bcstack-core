@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-#ifndef _GATTS_H_
-#define _GATTS_H_
+#ifndef _GATT_H_
+#define _GATT_H_
 
 #define ATT_MTU 23
 
@@ -45,8 +45,8 @@ typedef struct _bt_gatt_service_t {
         *(_size) = 5;                                                   \
     } while(0)
 
-void bt_gatts_print(void);
-void bt_gatts_handle_request(u8* req, u16 reqlen, u8* rsp, u16* rsplen);
-u8 bt_gatts_write(u16 handle, u8* value, u8 vlen);
+void bt_gatt_print(void);
+u8 bt_gatt_input(u8* input, u16 isize);
+u8 bt_gatt_output(u8* output, u16* osize);
 
-#endif // _GATTS_H_
+#endif // _GATT_H_

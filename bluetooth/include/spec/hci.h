@@ -17,14 +17,21 @@
 #ifndef BT_HCI_SPEC_H
 #define BT_HCI_SPEC_H
 
+#define HCI_PB_FIRST_NON_FLUSHABLE      0
+#define HCI_PB_CONTINUE                 1
+#define HCI_PB_FIRST_FLUSHABLE          2
+#define HCI_PB_COMPLETE                 3
+
 #define HCI_RESET_CMD               0x0c03
 #define HCI_LE_SET_ADV_PAR_CMD      0x2006
 #define HCI_LE_SET_ADV_DATA_CMD     0x2008
 #define HCI_LE_SET_ADV_EN_CMD       0x200A
 
+#define HCI_CONN_CMPLT_EVT          0x03
+#define HCI_CONN_REQ_EVT            0x04
 #define HCI_DISCONN_CMPLT_EVT       0x05
-#define HCI_CMD_CMPLT_EVT           0xE
-#define HCI_CMD_STATUS_EVT          0xF
+#define HCI_CMD_CMPLT_EVT           0x0E
+#define HCI_CMD_STATUS_EVT          0x0F
 #define HCI_NUM_OF_CMPLT_PKTS_EVT   0x13
 #define HCI_HW_ERR_EVT              0x10
 #define HCI_LE_META_EVT             0x3E

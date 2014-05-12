@@ -21,26 +21,36 @@
  */
 static struct {
     const u8* curr_reset_cmd;
-    u8* acl_in_data;
-    u16 acl_in_len;
-    u16 hconn; // connection handle
     u8 ncmds; // number of commands that can be sent
-    struct
-    {
+
+    struct {
+        u16 hconn;
+    } le;
+
+    struct {
+        u16 hconn;
+        u8  bdaddr[6];
+    } edr;
+
+    struct {
         u8 visible : 1;
     } state;
-    struct
-    {
+
+    struct {
         u8 reset : 1;
         u8 set_adv_params : 1;
         u8 set_adv_data : 1;
         u8 set_adv_en : 1;
+        u8 write_scan_en : 1;
+        u8 accept_conn : 1;
     } tasks;
 } hci;
 
 static void hci_send_command(u8* buffer, u16 size);
 static void hci_event_received(u8* data, u16 len);
-static void hci_disconn_complt( u8* data, u8 len );
+static void hci_conn_cmplt( u8* data, u8 len );
+static void hci_conn_req( u8* data, u8 len );
+static void hci_disconn_cmplt( u8* data, u8 len );
 static void hci_cmd_cmplt( u8* data, u8 len );
 static void hci_cmd_status( u8* data, u8 len );
 static void hci_num_of_cmplt_pkts( u8* data, u8 len );
@@ -85,6 +95,8 @@ static const u8 hci_reset_seq[] = {
     0x12, 0x0C, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, // delete stored key
     0x0F, 0x08, 0x02, 0x0F, 0x00, // write default link policy settings
     0x6D, 0x0C, 0x02, 0x01, 0x01, // write le host supported (1)
+    0x1C, 0x0C, 0x04, 0x00, 0x20, 0x12, 0x00, // write page scan activity
+    0x1E, 0x0C, 0x04, 0x00, 0x20, 0x12, 0x00, // write inquiry scan activity
     0,0,0 // end of sequence
 };
 
@@ -167,10 +179,43 @@ static void hci_send_command(u8* buffer, u16 size)
             hci.tasks.set_adv_en = 0;
 
             memcpy(buffer, le_set_adv_en, sizeof(le_set_adv_en));
-            buffer[3] = hci.state.visible;
+
+            if ((hci.le.hconn == 0) &&
+                (hci.state.visible == 1)) {
+                buffer[3] = 1;
+            } else {
+                buffer[3] = 0;
+            }
             send_cmd = 1;
 
-            printf("adv enabled\n");
+            printf("adv_en = %x\n", buffer[3]);
+        } else if (hci.tasks.write_scan_en) {
+            static const u8 hci_write_scan_en[] = {0x1A, 0xC, 1, 0};
+
+            hci.tasks.write_scan_en = 0;
+
+            memcpy(buffer, hci_write_scan_en, sizeof(hci_write_scan_en));
+
+            if ((hci.edr.hconn == 0) &&
+                (hci.state.visible == 1)) {
+                buffer[3] = 3;
+            } else {
+                buffer[3] = 0;
+            }
+            send_cmd = 1;
+
+            printf("scan enable = %x\n", buffer[3]);
+        } else if (hci.tasks.accept_conn) {
+            hci.tasks.accept_conn = 0;
+
+            buffer[0] = 9;
+            buffer[1] = 4;
+            buffer[2] = 7;
+            memcpy(buffer + 3, hci.edr.bdaddr, 6);
+            buffer[9] = 1;
+
+            send_cmd = 1;
+            printf("accept conn\n");
         }
 
         if (send_cmd) {
@@ -205,8 +250,14 @@ static void hci_event_received(u8* data, u16 len)
     bt_dumphex("EVT", data, len);
     
     switch (event_code) {
+    case HCI_CONN_CMPLT_EVT:
+        hci_conn_cmplt(param, param_len);
+        break;
+    case HCI_CONN_REQ_EVT:
+        hci_conn_req(param, param_len);
+        break;
     case HCI_DISCONN_CMPLT_EVT:
-        hci_disconn_complt(param, param_len);
+        hci_disconn_cmplt(param, param_len);
         break;
     case HCI_CMD_CMPLT_EVT:
         hci_cmd_cmplt(param, param_len);
@@ -240,15 +291,42 @@ static void hci_event_received(u8* data, u16 len)
     }
 }
 
-static void hci_disconn_complt( u8* data, u8 len )
+static void hci_conn_cmplt( u8* data, u8 len )
 {
-#if DEBUG
-    printf("disconnected\n");
-#endif
+    if (data[0] == 0) {
+        printf("edr connected\n");
 
-    hci.hconn = 0;
+        hci.edr.hconn = bt_read_u16(data + 1);
 
-    hci.tasks.set_adv_en = 1;
+        hci.tasks.write_scan_en = 1;
+        hci_write_later(BT_COMMAND_CHANNEL);
+    }
+}
+
+static void hci_conn_req( u8* data, u8 len )
+{
+    memcpy(hci.edr.bdaddr, data, 6);
+
+    hci.tasks.accept_conn = 1;
+    hci_write_later(BT_COMMAND_CHANNEL);
+}
+
+static void hci_disconn_cmplt( u8* data, u8 len )
+{
+    u16 handle;
+
+    handle = bt_read_u16(data + 1);
+
+    if (handle == hci.edr.hconn) {
+        printf("edr disconnected\n");
+        hci.edr.hconn = 0;
+        hci.tasks.write_scan_en = 1;
+    } else if (handle == hci.le.hconn) {
+        printf("le disconnected\n");
+        hci.le.hconn = 0;
+        hci.tasks.set_adv_en = 1;
+    }
+
     hci_write_later(BT_COMMAND_CHANNEL);
 }
 
@@ -277,7 +355,11 @@ static void hci_hw_err( u8* data, u8 len )
 
 static void hci_le_conn_cmplt( u8* data, u8 len )
 {
-    hci.hconn = bt_read_u16(data + 2);
+    printf("le connected\n");
+
+    hci.le.hconn = bt_read_u16(data + 2);
+    hci.tasks.set_adv_en = 1;
+    hci_write_later(BT_COMMAND_CHANNEL);
 }
 
 static void hci_le_adv_report( u8* data, u8 len )
@@ -295,99 +377,55 @@ static void hci_le_long_term_key_req( u8* data, u8 len )
     
 }
 
-static void hci_acl_received(u8* data, u16 len)
+static void hci_acl_received(u8* input, u16 isize)
 {
     u8 handle;
     u8 flags;
     u8 acl_len;
-    u8 l2_len;
-    u16 cid;
     u8 reqcode;
     u8* req;
     u16 reqlen;
 
-    bt_dumphex("ACLI", data, len);
+    bt_dumphex("ACLI", input, isize);
 
     /* acl format
        bits 0-11   handle
        bits 12-13  pb flag
        bits 14-15  bc flag
-       bits 16-31  data total length
+       bits 16-31  input total length
     */
 
-    handle = bt_read_u16(data) & 0xFFF;
-    flags = data[1] >> 4;
-    acl_len = bt_read_u16(data +2);
+    handle = bt_read_u16(input) & 0xFFF;
+    flags = input[1] >> 4;
+    acl_len = bt_read_u16(input +2);
 
-    if (hci.hconn != handle) return;
+    if ((hci.le.hconn != handle) &&
+        (hci.edr.hconn != handle)) return;
 
-    /* l2cap format
-       u16  length
-       u16  cid
-    */
-
-    l2_len = bt_read_u16(data + 4);
-    cid = bt_read_u16(data + 6);
-
-    printf("ACL-IN: handle=%x flags=%x acl_len=%x l2_len=%x cid=%x\n",
-           handle, flags, acl_len, l2_len, cid);
-
-    if (cid != ATT_CID) return;
-
-    /* att format
-       1 byte     opcode
-       *          data
-       0 or 12    signature
-    */
-
-    reqcode = data[8];
-    req = data + 8;
-    reqlen = len - 8;
-
-    if (reqcode == WRITE_CMD) {
-        u16 handle;
-        handle = bt_read_u16(req + 1);
-        bt_gatts_write(handle, req + 3, reqlen - 3);
-    } else if (reqcode == SIGN_WRITE_CMD) {
-        u16 handle;
-        handle = bt_read_u16(req + 1);
-        bt_gatts_write(handle, req + 3, reqlen - 15);
-    } else {
-        // defer processing until acl-out channel is ready
-        hci.acl_in_data = data;
-        hci.acl_in_len = len;
-
+    if (l2cap_input(input + 4, isize - 4, flags)) {
         hci_write_later(BT_ACL_OUT_CHANNEL);
     }
 }
 
-static void hci_send_acl(u8* buffer, u16 len)
+static void hci_send_acl(u8* output, u16 osize)
 {
-    u8* req;
-    u16 reqlen;
-    u8* rsp;
-    u16 rsplen;
-    u8  errcode = UNLIKELY_ERROR;
-    u16 start_handle = 0;
+    u16 payload_size;
+    u8 edr;
 
-    if (hci.acl_in_data == NULL) return;
+    payload_size = osize - 4;
+    l2cap_output(output + 4, &payload_size, &edr);
 
-    req = hci.acl_in_data + 8;
-    reqlen = hci.acl_in_len - 8;
-    rsp = buffer + 8;
-    rsplen = len - 8;
+    if (payload_size) {
+        if (edr) {
+            bt_write_u16(output, hci.edr.hconn | 0x2000);
+        } else {
+            bt_write_u16(output, hci.le.hconn | 0x2000);
+        }
+        bt_write_u16(output + 2, payload_size);
 
-    bt_gatts_handle_request(req, reqlen, rsp, &rsplen);
-
-    bt_write_u16(buffer, hci.hconn | 0x2000);
-    bt_write_u16(buffer + 2, rsplen + 4);
-    bt_write_u16(buffer + 4, rsplen);
-    bt_write_u16(buffer + 6, ATT_CID);
-
-    bt_dumphex("ACLO", buffer, rsplen + 8);
-    hci_write(BT_ACL_OUT_CHANNEL, rsplen + 8);
-
-    hci.acl_in_data = NULL;
+        bt_dumphex("ACLO", output, payload_size + 4);
+        hci_write(BT_ACL_OUT_CHANNEL, payload_size + 4);
+    }
 }
 
 void bt_setup(void)
@@ -423,6 +461,7 @@ void gap_set_visible(int v)
 {
     hci.state.visible = v;
     hci.tasks.set_adv_en = 1;
+    hci.tasks.write_scan_en = 1;
 
     hci_write_later(BT_COMMAND_CHANNEL);
 }

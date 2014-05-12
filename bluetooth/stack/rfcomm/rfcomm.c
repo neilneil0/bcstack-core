@@ -15,22 +15,3 @@
 */
 
 #include "bluetooth.h"
-
-void app_setup(void)
-{
-    printf("print attribute table \n");
-
-    battery_set_level(0x3f);
-    accel_set_xyz(0xA1, 0xA2, 0xA3);
-
-    bt_gatt_print();
-}
-
-void app_loop(void)
-{
-    bt_exit = 1;
-}
-
-void app_shutdown(void)
-{
-}

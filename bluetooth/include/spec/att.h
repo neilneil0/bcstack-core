@@ -17,8 +17,6 @@
 #ifndef BT_ATT_SPEC_H
 #define BT_ATT_SPEC_H
 
-#define ATT_CID  0x4
-
 /* ATT Methods */
 #define ERROR_RSP                  0x01
 #define EXCH_MTU_REQ               0x02

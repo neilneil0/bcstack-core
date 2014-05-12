@@ -32,8 +32,11 @@ typedef int8_t  s8;
 #include "spec/att.h"
 #include "spec/gatt.h"
 #include "spec/hci.h"
+#include "spec/l2cap-spec.h"
+#include "spec/sdp-spec.h"
 #include "gap.h"
-#include "gatts.h"
+#include "l2cap.h"
+#include "gatt.h"
 #include "battery-service.h"
 #include "accel-service.h"
 #include "blood-pressure-service.h"
@@ -58,6 +61,18 @@ void bt_dumphex(char* msg, const u8* v, u16 len);
     do {                                        \
         (buffer)[0] = (value) & 0xFF;           \
         (buffer)[1] = (value) >> 8;             \
+    } while (0)
+
+#define bt_read_u32(buffer)                     \
+    ((buffer)[0] + ((buffer)[1] << 8) +         \
+     (buffer)[2] << 16 + ((buffer)[3] << 24))
+
+#define bt_write_u32(buffer, value)             \
+    do {                                        \
+        (buffer)[0] = (value) & 0xFF;           \
+        (buffer)[1] = ((value) >> 8) & 0xFF;    \
+        (buffer)[2] = ((value) >> 16) & 0xFF;   \
+        (buffer)[3] = ((value) >> 24) & 0xFF;   \
     } while (0)
 
 #endif // _BLUETOOTH_H

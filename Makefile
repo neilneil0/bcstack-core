@@ -13,6 +13,9 @@ SRCS = \
 	$(wildcard utils/*.c) \
 	$(wildcard bluetooth/stack/hci/*.c) \
 	$(wildcard bluetooth/stack/hci/$(TRANSPORT)/*.c) \
+	$(wildcard bluetooth/stack/l2cap/*.c) \
+	$(wildcard bluetooth/stack/sdp/*.c) \
+	$(wildcard bluetooth/stack/rfcomm/*.c) \
 	$(wildcard bluetooth/stack/gatt/*.c)
 
 OBJS = $(SRCS:.c=.o)
