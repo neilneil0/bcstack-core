@@ -22,17 +22,8 @@ static struct {
         u8 tid;
     } pdu;
 
-    union {
-        struct {
-            u16 uuid;
-        } search;
-
-        struct {
-        } attr;
-
-        struct {
-        } search_attr;
-    } u;
+    u8 handle;
+    u8 attr_idx;
 } sdp;
 
 static void read_data_element(u8**input, u8* type, u32* length, u8** data);
@@ -51,7 +42,7 @@ u8 sdp_input(u8* input, u16 isize)
     u32 length;
 
     sdp.pdu.id = input[0];
-    sdp.pdu.tid = bt_read_u16(input + 1);
+    sdp.pdu.tid = sdp_read_u16(input + 1);
 
     switch (sdp.pdu.id) {
     case SDP_ERROR_RESPONSE:
@@ -62,13 +53,15 @@ u8 sdp_input(u8* input, u16 isize)
         read_data_element(&p, &type, &length, &data);
         // read UUID
         read_data_element(&p, &type, &length, &data);
-        sdp.u.search.uuid = bt_read_u16(data);
+        //uuid = sdp_read_u16(data);
         has_output = 1;
         break;
     case SDP_SERVICE_ATTRIBUTE_REQUEST:
         has_output = 1;
         break;
     case SDP_SERVICE_SEARCH_ATTRIBUTE_REQUEST:
+        sdp.handle = 1;
+        sdp.attr_idx = 0;
         has_output = 1;
         break;
     }
@@ -76,43 +69,75 @@ u8 sdp_input(u8* input, u16 isize)
 
 u8 sdp_output(u8* output, u16* osize)
 {
+    sdp_record_t* record;
+    sdp_attr_t* attr;
+    u8 i;
+    u8 offset;
+
+    record = records[sdp.handle - 1];
+
     switch (sdp.pdu.id) {
     case SDP_SERVICE_SEARCH_REQUEST:
         output[0] = SDP_SERVICE_SEARCH_RESPONSE;
-        bt_write_u16(output + 1, sdp.pdu.tid);
-        bt_write_u16(output + 3, 7); // length
-        bt_write_u16(output + 5, 1); // total record count
-        bt_write_u16(output + 7, 1); // current record count
-        bt_write_u32(output + 9, 1); // record handle
+        sdp_write_u16(output + 1, sdp.pdu.tid);
+        sdp_write_u16(output + 3, 7); // length
+        sdp_write_u16(output + 5, 1); // total record count
+        sdp_write_u16(output + 7, 1); // current record count
+        sdp_write_u32(output + 9, 1); // record handle
         output[13] = 0;
         *osize = 10;
         break;
     case SDP_SERVICE_ATTRIBUTE_REQUEST:
         output[0] = SDP_SERVICE_ATTRIBUTE_RESPONSE;
-        bt_write_u16(output + 1, sdp.pdu.tid);
-        bt_write_u16(output + 3, 0); // length
-        bt_write_u16(output + 5, 0); // attribute list byte count
+        sdp_write_u16(output + 1, sdp.pdu.tid);
+        sdp_write_u16(output + 3, 0); // length
+        sdp_write_u16(output + 5, 0); // attribute list byte count
         // attribute list
         output[7] = (SDP_DE_DES << 3) + SDP_DE_SIZE_VAR_8;
         output[8] = 0; // length of attr id/value pair
         output[9] = (SDP_DE_UINT << 3) + SDP_DE_SIZE_16;
-        //bt_write_u16(output + 10, attr_id);
+        //sdp_write_u16(output + 10, attr_id);
         // attr value
         // continuation
         break;
     case SDP_SERVICE_SEARCH_ATTRIBUTE_REQUEST:
+        printf("attr: %x,%x\n", attr->id, attr->length);
         output[0] = SDP_SERVICE_SEARCH_ATTRIBUTE_RESPONSE;
-        bt_write_u16(output + 1, sdp.pdu.tid);
-        bt_write_u16(output + 3, 0); // length
-        bt_write_u16(output + 3, 0); // attr list byte count
+        sdp_write_u16(output + 1, sdp.pdu.tid);
+
+        offset = 11;
+
+        // record handle
+        output[offset++] = (SDP_DE_UINT << 3) | SDP_DE_SIZE_16;
+        sdp_write_u16(output + offset, SDP_SERVICE_RECORD_HANDLE);
+        offset += 2;
+        output[offset++] = (SDP_DE_UINT << 3) | SDP_DE_SIZE_16;
+        sdp_write_u16(output + offset, 1);
+        offset += 2;
+
+        for (i=0; i<record[0].count; i++) {
+            attr = &record->attrs[i];
+            output[offset++] = (SDP_DE_UINT << 3) | SDP_DE_SIZE_16;
+            sdp_write_u16(output + offset, attr->id);
+            offset += 2;
+            memcpy(output + offset, attr->value, attr->length);
+            offset += attr->length;
+        }
+        // continuation
+        output[offset] = 0;
+
         // atribute list
+        output[9] = (SDP_DE_DES << 3) + SDP_DE_SIZE_VAR_8;
+        output[10] = offset - 11;
+
+        // attribute lists
         output[7] = (SDP_DE_DES << 3) + SDP_DE_SIZE_VAR_8;
-        output[8] = 0; // length of attr id/value pair
-        output[] = (SDP_DE_UINT << 3) | SDP_DE_SIZE_16;
-        bt_write_u16(output + 0, attr_id);
-        memcpy(output,
-               records[handle - 1]->attrs[attr_index].attr_value,
-               records[handle - 1]->attrs[attr_index].attr_length);
+        output[8] = offset - 9;
+
+        sdp_write_u16(output + 5, offset - 7); // attr list byte count
+        sdp_write_u16(output + 3, offset - 4); // length
+
+        *osize = offset + 1;
         break;
     }
 
@@ -147,11 +172,11 @@ static void read_data_element(u8**input, u8* type, u32* length, u8** data)
         hdrlen += 1;
         break;
     case SDP_DE_SIZE_VAR_16:
-        *length = bt_read_u16(p + 1);
+        *length = sdp_read_u16(p + 1);
         hdrlen += 2;
         break;
     case SDP_DE_SIZE_VAR_32:
-        *length = bt_read_u32(p + 1);
+        *length = sdp_read_u32(p + 1);
         hdrlen += 4;
         break;
     }

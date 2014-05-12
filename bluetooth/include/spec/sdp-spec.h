@@ -42,23 +42,19 @@ enum {
     SDP_DE_SIZE_VAR_32
 };
 
-#define SDP_UUID_8(v)                           \
-    ((SDP_DE_UUID << 3) | SDP_DE_SIZE_16),      \
-        (v)
-
 #define SDP_UUID_16(v)                          \
     ((SDP_DE_UUID << 3) | SDP_DE_SIZE_16),      \
-        ((v) & 0xff),                           \
-        ((v) >> 8)
+        ((v) >> 8),                             \
+        ((v) & 0xff)
 
 #define SDP_UINT_8(v)                           \
-    ((SDP_DE_UINT << 3) | SDP_DE_SIZE_16),      \
+    ((SDP_DE_UINT << 3) | SDP_DE_SIZE_8),       \
         (v)
 
 #define SDP_UINT_16(v)                          \
     ((SDP_DE_UINT << 3) | SDP_DE_SIZE_16),      \
-        ((v) & 0xff),                           \
-        ((v) >> 8)
+        ((v) >> 8),                             \
+        ((v) & 0xff)
 
 #define SDP_DES(v)                              \
     ((SDP_DE_DES << 3) | SDP_DE_SIZE_VAR_8),    \

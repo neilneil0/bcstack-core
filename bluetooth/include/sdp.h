@@ -18,8 +18,8 @@
 #define _SDP_H_
 
 typedef struct _sdp_attr_t {
-    u16 attr_id;
-    const u8* attr_value;
+    u16 id;
+    const u8* value;
     u8 length;
 } sdp_attr_t;
 
@@ -27,5 +27,26 @@ typedef struct _sdp_record_t {
     const sdp_attr_t* attrs;
     u8 count;
 } sdp_record_t;
+
+#define sdp_read_u16(buffer)                     \
+    ((buffer)[1] + ((buffer)[0] << 8))
+
+#define sdp_write_u16(buffer, value)             \
+    do {                                        \
+        (buffer)[1] = (value) & 0xFF;           \
+        (buffer)[0] = (value) >> 8;             \
+    } while (0)
+
+#define sdp_read_u32(buffer)                     \
+    ((buffer)[3] + ((buffer)[2] << 8) +         \
+     (buffer)[1] << 16 + ((buffer)[0] << 24))
+
+#define sdp_write_u32(buffer, value)             \
+    do {                                        \
+        (buffer)[3] = (value) & 0xFF;           \
+        (buffer)[2] = ((value) >> 8) & 0xFF;    \
+        (buffer)[1] = ((value) >> 16) & 0xFF;   \
+        (buffer)[0] = ((value) >> 24) & 0xFF;   \
+    } while (0)
 
 #endif // _SDP_H_
