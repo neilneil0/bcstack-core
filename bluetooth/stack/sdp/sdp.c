@@ -37,6 +37,12 @@ static struct {
 
 static void read_data_element(u8**input, u8* type, u32* length, u8** data);
 
+extern const sdp_record_t spp_record;
+
+static const sdp_record_t* records[] = {
+    &spp_record,
+};
+
 u8 sdp_input(u8* input, u16 isize)
 {
     u8 has_output = 0;
@@ -74,15 +80,39 @@ u8 sdp_output(u8* output, u16* osize)
     case SDP_SERVICE_SEARCH_REQUEST:
         output[0] = SDP_SERVICE_SEARCH_RESPONSE;
         bt_write_u16(output + 1, sdp.pdu.tid);
-        bt_write_u16(output + 3, 0); // length
+        bt_write_u16(output + 3, 7); // length
         bt_write_u16(output + 5, 1); // total record count
         bt_write_u16(output + 7, 1); // current record count
         bt_write_u32(output + 9, 1); // record handle
         output[13] = 0;
+        *osize = 10;
         break;
     case SDP_SERVICE_ATTRIBUTE_REQUEST:
+        output[0] = SDP_SERVICE_ATTRIBUTE_RESPONSE;
+        bt_write_u16(output + 1, sdp.pdu.tid);
+        bt_write_u16(output + 3, 0); // length
+        bt_write_u16(output + 5, 0); // attribute list byte count
+        // attribute list
+        output[7] = (SDP_DE_DES << 3) + SDP_DE_SIZE_VAR_8;
+        output[8] = 0; // length of attr id/value pair
+        output[9] = (SDP_DE_UINT << 3) + SDP_DE_SIZE_16;
+        //bt_write_u16(output + 10, attr_id);
+        // attr value
+        // continuation
         break;
     case SDP_SERVICE_SEARCH_ATTRIBUTE_REQUEST:
+        output[0] = SDP_SERVICE_SEARCH_ATTRIBUTE_RESPONSE;
+        bt_write_u16(output + 1, sdp.pdu.tid);
+        bt_write_u16(output + 3, 0); // length
+        bt_write_u16(output + 3, 0); // attr list byte count
+        // atribute list
+        output[7] = (SDP_DE_DES << 3) + SDP_DE_SIZE_VAR_8;
+        output[8] = 0; // length of attr id/value pair
+        output[] = (SDP_DE_UINT << 3) | SDP_DE_SIZE_16;
+        bt_write_u16(output + 0, attr_id);
+        memcpy(output,
+               records[handle - 1]->attrs[attr_index].attr_value,
+               records[handle - 1]->attrs[attr_index].attr_length);
         break;
     }
 

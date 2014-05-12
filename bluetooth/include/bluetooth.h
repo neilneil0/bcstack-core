@@ -36,6 +36,7 @@ typedef int8_t  s8;
 #include "spec/sdp-spec.h"
 #include "gap.h"
 #include "l2cap.h"
+#include "sdp.h"
 #include "gatt.h"
 #include "battery-service.h"
 #include "accel-service.h"
