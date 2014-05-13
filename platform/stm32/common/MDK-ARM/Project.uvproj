@@ -361,7 +361,7 @@
               <MiscControls>--C99 --gnu</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F401xC,USE_STM32F401_DISCO,HAVE_SHELL,INIT_CMD_NUM=0</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\..\stm32f4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\stm32f4\Drivers\STM32F4xx_HAL_Driver\inc;..\..\stm32f4\Drivers\BSP\STM32F401-Discovery;..\..\stm32f4\User;..\..\..\..\include;..\..\..\..\include\cpu\generic32</IncludePath>
+              <IncludePath>..\Inc;..\..\stm32f4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\stm32f4\Drivers\STM32F4xx_HAL_Driver\inc;..\..\stm32f4\Drivers\BSP\STM32F401-Discovery;..\..\stm32f4\User;..\..\..\..\bluetooth\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -543,6 +543,13 @@
         </Group>
         <Group>
           <GroupName>app</GroupName>
+          <Files>
+            <File>
+              <FileName>btdemo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\apps\demo\btdemo.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>bluetooth</GroupName>
@@ -601,6 +608,11 @@
               <FileName>vport.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\bluetooth\stack\vport\vport.c</FilePath>
+            </File>
+            <File>
+              <FileName>debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\utils\debug.c</FilePath>
             </File>
           </Files>
         </Group>

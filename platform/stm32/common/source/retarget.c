@@ -14,9 +14,9 @@
   limitations under the License.
 */
 
-#include "bluetooth/app.h"
 #include "stm32f4xx_hal.h"
 #include "stm32f401_discovery.h"
+#include "bluetooth.h"
 
 #if !(HAVE_SHELL)
 int fputc(int ch, FILE *f) 

@@ -15,8 +15,7 @@
 */
 #include "stm32f4xx_hal.h"
 #include "stm32f401_discovery.h"
-#include "bluetooth/host.h"
-#include "bluetooth/app.h"
+#include "bluetooth.h"
 
 #if BT_UART_LOOPBACK
 void bt_uart_loopback(void);

@@ -14,7 +14,7 @@
   limitations under the License.
 */
 #include "stm32f4xx_hal.h"
-#include "bluetooth/host.h"
+#include "bluetooth.h"
 
 #define BTUART                           USART2
 #define BTUART_CLK_ENABLE()              __USART2_CLK_ENABLE();
