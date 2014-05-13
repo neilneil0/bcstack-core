@@ -10,7 +10,7 @@ LD = gcc
 SRCS = \
 	$(wildcard apps/$(APP)/*.c) \
 	$(wildcard platform/$(PLATFORM)/*.c) \
-	$(wildcard utils/*.c) \
+	$(wildcard bluetooth/utils/*.c) \
 	$(wildcard bluetooth/stack/hci/*.c) \
 	$(wildcard bluetooth/stack/hci/$(TRANSPORT)/*.c) \
 	$(wildcard bluetooth/stack/l2cap/*.c) \

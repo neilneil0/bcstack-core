@@ -30,6 +30,7 @@ typedef int16_t s16;
 typedef int8_t  s8;
 
 #include "btconfig.h"
+#include "usrconfig.h"
 #include "btutils.h"
 #include "spec/att-spec.h"
 #include "spec/gatt-spec.h"

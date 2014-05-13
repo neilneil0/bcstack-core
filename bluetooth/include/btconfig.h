@@ -26,12 +26,12 @@
 #define DEBUG_L2CAP      0
 
 #define DEBUG_ANY (                             \
-    DEBUG_USER |                                \
-    DEBUG_BCSP |                                \
-    DEBUG_USB |                                 \
-    DEBUG_HCI |                                 \
-    DEBUG_GATT |                                \
-    DEBUG_L2CAP)
+        DEBUG_USER ||                           \
+        DEBUG_BCSP ||                           \
+        DEBUG_USB ||                            \
+        DEBUG_HCI ||                            \
+        DEBUG_GATT ||                           \
+        DEBUG_L2CAP)
 
 /*** L2CAP configurations ***/
 

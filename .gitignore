@@ -31,3 +31,5 @@ platform/stm32/common/MDK-ARM/STM32F401-Discovery/*
 *.dep
 
 *.lst
+
+bluetooth/include/usrconfig.h
