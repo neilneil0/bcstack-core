@@ -40,13 +40,10 @@ static int event_addr;
 static int acl_in_addr;
 static int acl_out_addr;
 
-#define CMD_BUFFER_SIZE 128
-static uint8_t cmd_buffer[CMD_BUFFER_SIZE + LIBUSB_CONTROL_SETUP_SIZE];
-#define EVT_BUFFER_SIZE 128
+static uint8_t cmd_buffer[CFG_HCI_USB_COMMAND_MTU + LIBUSB_CONTROL_SETUP_SIZE];
 static uint8_t evt_buffer[CMD_BUFFER_SIZE];
-#define ACL_BUFFER_SIZE 64
-static uint8_t acl_in_buffer[ACL_BUFFER_SIZE];
-static uint8_t acl_out_buffer[ACL_BUFFER_SIZE];
+static uint8_t acl_in_buffer[CFG_HCI_USB_ACL_MTU];
+static uint8_t acl_out_buffer[CFG_HCI_USB_ACL_MTU];
 
 static u8 cmd_completed, acl_out_completed;
 
@@ -69,7 +66,7 @@ static void LIBUSB_CALL usb_cb(struct libusb_transfer *transfer)
     if (transfer == cmd_xfer) {
         resubmit = 0;
         *((u8*)transfer->user_data) = 1;
-        hci_handle_transport_event(BT_COMMAND_CHANNEL, cmd_buffer + LIBUSB_CONTROL_SETUP_SIZE, CMD_BUFFER_SIZE);
+        hci_handle_transport_event(BT_COMMAND_CHANNEL, cmd_buffer + LIBUSB_CONTROL_SETUP_SIZE, CFG_HCI_USB_COMMAND_MTU);
     } else if (transfer == evt_xfer) {
         resubmit = 1;
         hci_handle_transport_event(BT_EVENT_CHANNEL, evt_buffer, transfer->actual_length);
@@ -79,7 +76,7 @@ static void LIBUSB_CALL usb_cb(struct libusb_transfer *transfer)
     } else if (transfer == acl_out_xfer) {
         resubmit = 0;
         *((u8*)transfer->user_data) = 1;
-        hci_handle_transport_event(BT_ACL_OUT_CHANNEL, acl_out_buffer, ACL_BUFFER_SIZE);
+        hci_handle_transport_event(BT_ACL_OUT_CHANNEL, acl_out_buffer, CFG_HCI_USB_ACL_MTU);
     } else {
         printf("error in usb_cb\n");
         resubmit = 0;
@@ -150,14 +147,14 @@ void hci_setup(void)
 
     // submit input transfers
     libusb_fill_interrupt_transfer(evt_xfer, devh, event_addr, 
-                                   evt_buffer, EVT_BUFFER_SIZE, usb_cb, (void*)0, 0);
+                                   evt_buffer, CFG_HCI_USB_EVENT_MTU, usb_cb, (void*)0, 0);
     r = libusb_submit_transfer(evt_xfer);
     if (r) {
         printf("Cannot submit event transfer");
     }
 
     libusb_fill_bulk_transfer(acl_in_xfer, devh, acl_in_addr, 
-                              acl_in_buffer, ACL_BUFFER_SIZE, usb_cb, (void*)0, 0) ;
+                              acl_in_buffer, CFG_HCI_USB_ACL_MTU, usb_cb, (void*)0, 0) ;
  
     r = libusb_submit_transfer(acl_in_xfer);
     if (r) {
@@ -178,12 +175,12 @@ void hci_write_later(u8 channel)
     switch (channel) {
     case BT_COMMAND_CHANNEL:
         if (cmd_completed) {
-            hci_handle_transport_event(BT_COMMAND_CHANNEL, cmd_buffer + LIBUSB_CONTROL_SETUP_SIZE, CMD_BUFFER_SIZE);
+            hci_handle_transport_event(BT_COMMAND_CHANNEL, cmd_buffer + LIBUSB_CONTROL_SETUP_SIZE, CFG_HCI_USB_COMMAND_MTU);
         }
         break;
     case BT_ACL_OUT_CHANNEL:
         if (acl_out_completed) {
-            hci_handle_transport_event(BT_ACL_OUT_CHANNEL, acl_out_buffer, ACL_BUFFER_SIZE);
+            hci_handle_transport_event(BT_ACL_OUT_CHANNEL, acl_out_buffer, CFG_HCI_USB_ACL_MTU);
         }
         break;
     }

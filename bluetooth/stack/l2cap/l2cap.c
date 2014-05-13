@@ -16,9 +16,6 @@
 
 #include "bluetooth.h"
 
-#define CFG_L2CAP_MTU_LE      30
-#define CFG_L2CAP_MTU_EDR     600
-
 #define INTERNAL_SENDCFG_REQUEST   0xF0
 
 #define SIG_OUTPUT          0x01

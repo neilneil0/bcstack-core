@@ -28,14 +28,12 @@
 #define BCSP_CMDEVT_CHANNEL 5
 #define BCSP_ACL_CHANNEL 6
 
-#define BCSP_PACKET_SIZE 128
-
 static struct bcsp_globals_t {
     struct ubcsp_packet txpkt;
-    u8 txbuf[BCSP_PACKET_SIZE];
+    u8 txbuf[CFG_HCI_UART_MTU_H2C];
 
     struct ubcsp_packet rxpkt;
-    u8 rxbuf[BCSP_PACKET_SIZE];
+    u8 rxbuf[CFG_HCI_UART_MTU_C2H];
 
     union {
         u8     all;
@@ -64,10 +62,10 @@ void hci_setup(void)
 
 	ubcsp_initialize();
 
-	bcsp.txpkt.length = BCSP_PACKET_SIZE;
+	bcsp.txpkt.length = CFG_HCI_UART_MTU_H2C;
 	bcsp.txpkt.payload = bcsp.txbuf;
 
-	bcsp.rxpkt.length = BCSP_PACKET_SIZE;
+	bcsp.rxpkt.length = CFG_HCI_UART_MTU_C2H;
 	bcsp.rxpkt.payload = bcsp.rxbuf;
 
     bcsp.flags.all = 0;
@@ -102,7 +100,7 @@ void hci_write_later(u8 channel)
 {
     if (!bcsp.flags.txready) return;
 
-    hci_handle_transport_event(channel, bcsp.txbuf, BCSP_PACKET_SIZE);
+    hci_handle_transport_event(channel, bcsp.txbuf, CFG_HCI_UART_MTU_H2C);
 }
 
 void hci_write(u8 channel, u16 size)
@@ -140,10 +138,10 @@ void hci_loop(void)
         bcsp.flags.txready = 1;
         switch (bcsp.txpkt.channel) {
         case BCSP_CMDEVT_CHANNEL:
-            hci_handle_transport_event(BT_COMMAND_CHANNEL, bcsp.txbuf, BCSP_PACKET_SIZE);
+            hci_handle_transport_event(BT_COMMAND_CHANNEL, bcsp.txbuf, CFG_HCI_UART_MTU_H2C);
             break;
         case BCSP_ACL_CHANNEL:
-            hci_handle_transport_event(BT_ACL_OUT_CHANNEL, bcsp.txbuf, BCSP_PACKET_SIZE);
+            hci_handle_transport_event(BT_ACL_OUT_CHANNEL, bcsp.txbuf, CFG_HCI_UART_MTU_H2C);
             break;
         }
     }
@@ -160,7 +158,7 @@ void hci_loop(void)
             bcsp_info("BCSP RX Unknown Channel 0x%x\n", bcsp.rxpkt.channel);
         }
 
-        bcsp.rxpkt.length = BCSP_PACKET_SIZE;
+        bcsp.rxpkt.length = CFG_HCI_UART_MTU_C2H;
         ubcsp_receive_packet(&bcsp.rxpkt);
     }
 

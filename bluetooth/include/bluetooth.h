@@ -29,6 +29,7 @@ typedef int32_t s32;
 typedef int16_t s16;
 typedef int8_t  s8;
 
+#include "btconfig.h"
 #include "spec/att.h"
 #include "spec/gatt.h"
 #include "spec/hci.h"
