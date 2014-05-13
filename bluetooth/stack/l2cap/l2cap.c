@@ -25,6 +25,9 @@
 #define SDP_OUTPUT          0x02
 #define ATT_OUTPUT          0x04
 #define RFCOMM_OUTPUT       0x08
+#define VPORT_OUTPUT        0x10
+
+#define L2CAP_VPORT_PSM           101
 
 static struct {
     u8  outputs;
@@ -32,6 +35,7 @@ static struct {
     u16 sdp_cid;
     u16 rfcomm_cid;
 #endif // EXPERIMENTAL
+    u16 vport_cid;
     u16 offset;
     u16 length;
     u8  buffer[CFG_L2CAP_MTU_EDR];
@@ -67,6 +71,8 @@ static u8 l2cap_sig_input(u8* input, u16 isize);
 static u8 l2cap_sig_output(u8* output, u16* osize);
 u8 l2cap_sig_input(u8* input, u16 isize);
 u8 l2cap_sig_output(u8* output, u16* osize);
+u8 l2cap_vport_input(u8* input, u16 isize);
+u8 l2cap_vport_output(u8* output, u16* osize);
 
 void l2cap_init()
 {
@@ -106,6 +112,12 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
             l2cap.length = l2len;
         }
 
+#if DEBUG
+    if (l2cap.offset + isize - 4 > l2cap.length) {
+    printf("l2cap error! len=%d off=%d isize=%d\n",
+        l2cap.length, l2cap.offset, isize);
+}
+#endif
         memcpy(l2cap.buffer + l2cap.offset,
                input + 4, isize - 4);
         l2cap.offset += isize - 4;
@@ -125,6 +137,10 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
                     l2cap.outputs |= RFCOMM_OUTPUT;
                 }
 #endif // EXPERIMENTAL
+            } else if (cid == l2cap.vport_cid) {
+                if (vport_input(input + 4, isize - 4)) {
+                    l2cap.outputs |= VPORT_OUTPUT;
+                }
             }
         }
     }
@@ -175,6 +191,15 @@ u8 l2cap_output(u8* output, u16* osize, u8* edr)
         *osize = payload_size + 4;
         *edr = 1;
 #endif // EXPERIMENTAL
+    } else if (l2cap.outputs & VPORT_OUTPUT) {
+        l2cap.outputs &= ~VPORT_OUTPUT;
+        if (vport_output(output + 4, &payload_size)) {
+            l2cap.outputs |= VPORT_OUTPUT;
+        }
+        bt_write_u16(output, payload_size);
+        bt_write_u16(output + 2, l2cap.vport_cid);
+        *osize = payload_size + 4;
+        *edr = 1;
     } else {
         *osize = 0;
     }
@@ -248,6 +273,10 @@ static u8 l2cap_sig_output(u8* output, u16* osize)
             result = L2CAP_CONNECTION_SUCCESSFUL;
             break;
 #endif // EXPERIMENTAL
+        case L2CAP_VPORT_PSM:
+            l2cap.vport_cid = l2cap.request.u.connection.scid;
+            result = L2CAP_CONNECTION_SUCCESSFUL;
+            break;
         default:
             result = L2CAP_PSM_NOT_SUPPORTED;
         }
