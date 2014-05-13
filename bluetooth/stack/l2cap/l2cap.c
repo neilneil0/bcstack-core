@@ -24,7 +24,7 @@
 #define SIG_OUTPUT          0x01
 #define SDP_OUTPUT          0x02
 #define ATT_OUTPUT          0x04
-#define RFCOMM0_OUTPUT      0x08
+#define RFCOMM_OUTPUT      0x08
 
 static struct {
     u8  outputs;
@@ -117,6 +117,10 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
                 if (sdp_input(input + 4, isize - 4)) {
                     l2cap.outputs |= SDP_OUTPUT;
                 }
+            } else if (cid == l2cap.rfcomm_cid) {
+                if (rfcomm_input(input + 4, isize - 4)) {
+                    l2cap.outputs |= RFCOMM_OUTPUT;
+                }
             }
         }
     }
@@ -154,6 +158,15 @@ u8 l2cap_output(u8* output, u16* osize, u8* edr)
         }
         bt_write_u16(output, payload_size);
         bt_write_u16(output + 2, l2cap.sdp_cid);
+        *osize = payload_size + 4;
+        *edr = 1;
+    } else if (l2cap.outputs & RFCOMM_OUTPUT) {
+        l2cap.outputs &= ~RFCOMM_OUTPUT;
+        if (rfcomm_output(output + 4, &payload_size)) {
+            l2cap.outputs |= RFCOMM_OUTPUT;
+        }
+        bt_write_u16(output, payload_size);
+        bt_write_u16(output + 2, l2cap.rfcomm_cid);
         *osize = payload_size + 4;
         *edr = 1;
     } else {

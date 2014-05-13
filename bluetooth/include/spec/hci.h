@@ -34,6 +34,10 @@
 #define HCI_CMD_STATUS_EVT          0x0F
 #define HCI_NUM_OF_CMPLT_PKTS_EVT   0x13
 #define HCI_HW_ERR_EVT              0x10
+#define HCI_IO_CAP_REQ              0x31
+#define HCI_IO_CAP_RSP              0x32
+#define HCI_USER_CFM_REQ            0x33
+#define HCI_SIMPLE_PAIR_CMPLT       0x36
 #define HCI_LE_META_EVT             0x3E
 
 #define HCI_LE_CONN_CMPLT_EVT                   0x01

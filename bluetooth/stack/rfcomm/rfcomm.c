@@ -15,3 +15,32 @@
 */
 
 #include "bluetooth.h"
+
+u8 rfcomm_input(u8* input, u16 isize)
+{
+    u8 dlci;
+
+    dlci = input[0] >> 2;
+    if (dlci == 0) {
+        switch (input[1]) {
+        case RFCOMM_SABM:
+            break;
+
+        case RFCOMM_UA:
+            break;
+
+        case RFCOMM_DISC:
+            break;
+
+        case RFCOMM_DM:
+            break;
+
+        case RFCOMM_UIH:
+            break;
+        }
+    }
+}
+
+u8 rfcomm_output(u8* output, u16* osize)
+{
+}

@@ -43,6 +43,8 @@ static struct {
         u8 set_adv_en : 1;
         u8 write_scan_en : 1;
         u8 accept_conn : 1;
+        u8 io_cap_reply : 1;
+        u8 user_cfm_reply : 1;
     } tasks;
 } hci;
 
@@ -55,6 +57,10 @@ static void hci_cmd_cmplt( u8* data, u8 len );
 static void hci_cmd_status( u8* data, u8 len );
 static void hci_num_of_cmplt_pkts( u8* data, u8 len );
 static void hci_hw_err( u8* data, u8 len );
+static void hci_io_cap_req( u8* data, u8 len );
+static void hci_io_cap_rsp( u8* data, u8 len );
+static void hci_user_cfm_req( u8* data, u8 len );
+static void hci_simple_pair_cmplt( u8* data, u8 len );
 static void hci_le_conn_cmplt( u8* data, u8 len );
 static void hci_le_adv_report( u8* data, u8 len );
 static void hci_le_conn_update( u8* data, u8 len );
@@ -216,6 +222,27 @@ static void hci_send_command(u8* buffer, u16 size)
 
             send_cmd = 1;
             printf("accept conn\n");
+        } else if (hci.tasks.io_cap_reply) {
+            hci.tasks.io_cap_reply = 0;
+
+            buffer[0] = 0x2B;
+            buffer[1] = 4;
+            buffer[2] = 9;
+            memcpy(buffer + 3, hci.edr.bdaddr, 6);
+            buffer[9] = 3; // No IO
+            buffer[10] = 0; // No OOB data
+            buffer[11] = 0;
+
+            send_cmd = 1;
+        } else if (hci.tasks.user_cfm_reply) {
+            hci.tasks.user_cfm_reply = 0;
+
+            buffer[0] = 0x2C;
+            buffer[1] = 4;
+            buffer[2] = 6;
+            memcpy(buffer + 3, hci.edr.bdaddr, 6);
+
+            send_cmd = 1;
         }
 
         if (send_cmd) {
@@ -269,6 +296,18 @@ static void hci_event_received(u8* data, u16 len)
         hci_num_of_cmplt_pkts(param, param_len);
         break;
     case HCI_HW_ERR_EVT:
+        break;
+    case HCI_IO_CAP_REQ:
+        hci_io_cap_req(param, param_len);
+        break;
+    case HCI_IO_CAP_RSP:
+        hci_io_cap_rsp(param, param_len);
+        break;
+    case HCI_USER_CFM_REQ:
+        hci_user_cfm_req(param, param_len);
+        break;
+    case HCI_SIMPLE_PAIR_CMPLT:
+        hci_simple_pair_cmplt(param, param_len);
         break;
     case HCI_LE_META_EVT:
         subcode = data[2];
@@ -350,6 +389,28 @@ static void hci_num_of_cmplt_pkts( u8* data, u8 len )
 }
 
 static void hci_hw_err( u8* data, u8 len )
+{
+}
+
+static void hci_io_cap_req( u8* data, u8 len )
+{
+    hci.tasks.io_cap_reply = 1;
+
+    hci_write_later(BT_COMMAND_CHANNEL);
+}
+
+static void hci_io_cap_rsp( u8* data, u8 len )
+{
+}
+
+static void hci_user_cfm_req( u8* data, u8 len )
+{
+    hci.tasks.user_cfm_reply = 1;
+
+    hci_write_later(BT_COMMAND_CHANNEL);
+}
+
+static void hci_simple_pair_cmplt( u8* data, u8 len )
 {
 }
 
