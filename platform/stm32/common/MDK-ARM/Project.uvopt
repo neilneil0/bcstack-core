@@ -594,7 +594,7 @@
       <Focus>0</Focus>
       <ColumnNumber>65</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>192</TopLine>
+      <TopLine>193</TopLine>
       <CurrentLine>198</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>startup_stm32f401xc.s</PathWithFileName>
@@ -619,7 +619,7 @@
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <CurrentLine>9</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\source\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -661,45 +661,53 @@
   </Group>
 
   <Group>
+    <GroupName>app</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+  </Group>
+
+  <Group>
     <GroupName>bluetooth</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>24</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\hci\bcsp\hci-host-bcsp.c</PathWithFileName>
-      <FilenameWithoutPath>hci-host-bcsp.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\accel-service.c</PathWithFileName>
+      <FilenameWithoutPath>accel-service.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>25</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>13</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>33</TopLine>
-      <CurrentLine>40</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\hci\bcsp\ubcsp.c</PathWithFileName>
-      <FilenameWithoutPath>ubcsp.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\battery-service.c</PathWithFileName>
+      <FilenameWithoutPath>battery-service.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>26</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -709,45 +717,45 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\server\battery-service.c</PathWithFileName>
-      <FilenameWithoutPath>battery-service.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\blood-pressure-service.c</PathWithFileName>
+      <FilenameWithoutPath>blood-pressure-service.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>27</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>21</TopLine>
-      <CurrentLine>25</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\server\gatts.c</PathWithFileName>
-      <FilenameWithoutPath>gatts.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\devinfo-service.c</PathWithFileName>
+      <FilenameWithoutPath>devinfo-service.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>28</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>106</TopLine>
-      <CurrentLine>123</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\hci\hci-host.c</PathWithFileName>
-      <FilenameWithoutPath>hci-host.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\gatt.c</PathWithFileName>
+      <FilenameWithoutPath>gatt.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>29</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -757,13 +765,13 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\server\accel-service.c</PathWithFileName>
-      <FilenameWithoutPath>accel-service.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\led-service.c</PathWithFileName>
+      <FilenameWithoutPath>led-service.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>30</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -773,13 +781,13 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\server\blood-pressure-service.c</PathWithFileName>
-      <FilenameWithoutPath>blood-pressure-service.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\hci\bcsp\hci-bcsp.c</PathWithFileName>
+      <FilenameWithoutPath>hci-bcsp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>31</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -789,35 +797,27 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\server\devinfo-service.c</PathWithFileName>
-      <FilenameWithoutPath>devinfo-service.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\hci\bcsp\ubcsp.c</PathWithFileName>
+      <FilenameWithoutPath>ubcsp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>7</GroupNumber>
       <FileNumber>32</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>13</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>15</TopLine>
-      <CurrentLine>20</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\bluetooth\host\server\led-service.c</PathWithFileName>
-      <FilenameWithoutPath>led-service.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\hci\hcid.c</PathWithFileName>
+      <FilenameWithoutPath>hcid.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-  </Group>
-
-  <Group>
-    <GroupName>app</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>7</GroupNumber>
       <FileNumber>33</FileNumber>
@@ -829,8 +829,24 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\apps\socket\bluesocket.c</PathWithFileName>
-      <FilenameWithoutPath>bluesocket.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\l2cap\l2cap.c</PathWithFileName>
+      <FilenameWithoutPath>l2cap.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>7</GroupNumber>
+      <FileNumber>34</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\..\..\bluetooth\stack\vport\vport.c</PathWithFileName>
+      <FilenameWithoutPath>vport.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

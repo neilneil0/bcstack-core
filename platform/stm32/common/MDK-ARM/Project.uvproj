@@ -542,62 +542,65 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>app</GroupName>
+        </Group>
+        <Group>
           <GroupName>bluetooth</GroupName>
           <Files>
             <File>
-              <FileName>hci-host-bcsp.c</FileName>
+              <FileName>accel-service.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\hci\bcsp\hci-host-bcsp.c</FilePath>
-            </File>
-            <File>
-              <FileName>ubcsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\hci\bcsp\ubcsp.c</FilePath>
+              <FilePath>..\..\..\..\bluetooth\stack\gatt\accel-service.c</FilePath>
             </File>
             <File>
               <FileName>battery-service.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\server\battery-service.c</FilePath>
-            </File>
-            <File>
-              <FileName>gatts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\server\gatts.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci-host.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\hci\hci-host.c</FilePath>
-            </File>
-            <File>
-              <FileName>accel-service.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\server\accel-service.c</FilePath>
+              <FilePath>..\..\..\..\bluetooth\stack\gatt\battery-service.c</FilePath>
             </File>
             <File>
               <FileName>blood-pressure-service.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\server\blood-pressure-service.c</FilePath>
+              <FilePath>..\..\..\..\bluetooth\stack\gatt\blood-pressure-service.c</FilePath>
             </File>
             <File>
               <FileName>devinfo-service.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\server\devinfo-service.c</FilePath>
+              <FilePath>..\..\..\..\bluetooth\stack\gatt\devinfo-service.c</FilePath>
+            </File>
+            <File>
+              <FileName>gatt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\stack\gatt\gatt.c</FilePath>
             </File>
             <File>
               <FileName>led-service.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\bluetooth\host\server\led-service.c</FilePath>
+              <FilePath>..\..\..\..\bluetooth\stack\gatt\led-service.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>app</GroupName>
-          <Files>
             <File>
-              <FileName>bluesocket.c</FileName>
+              <FileName>hci-bcsp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\apps\socket\bluesocket.c</FilePath>
+              <FilePath>..\..\..\..\bluetooth\stack\hci\bcsp\hci-bcsp.c</FilePath>
+            </File>
+            <File>
+              <FileName>ubcsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\stack\hci\bcsp\ubcsp.c</FilePath>
+            </File>
+            <File>
+              <FileName>hcid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\stack\hci\hcid.c</FilePath>
+            </File>
+            <File>
+              <FileName>l2cap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\stack\l2cap\l2cap.c</FilePath>
+            </File>
+            <File>
+              <FileName>vport.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\bluetooth\stack\vport\vport.c</FilePath>
             </File>
           </Files>
         </Group>
