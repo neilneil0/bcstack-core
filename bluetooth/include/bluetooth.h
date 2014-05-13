@@ -30,11 +30,13 @@ typedef int16_t s16;
 typedef int8_t  s8;
 
 #include "btconfig.h"
-#include "spec/att.h"
-#include "spec/gatt.h"
-#include "spec/hci.h"
+#include "btutils.h"
+#include "spec/att-spec.h"
+#include "spec/gatt-spec.h"
+#include "spec/hci-spec.h"
 #include "spec/l2cap-spec.h"
 #include "spec/sdp-spec.h"
+#include "hci.h"
 #include "gap.h"
 #include "l2cap.h"
 #include "sdp.h"
@@ -43,7 +45,6 @@ typedef int8_t  s8;
 #include "accel-service.h"
 #include "blood-pressure-service.h"
 #include "devinfo-service.h"
-#include "hci.h"
 
 extern u8 bt_exit;
 
@@ -54,32 +55,5 @@ void bt_shutdown(void);
 void app_setup(void);
 void app_loop(void);
 void app_shutdown(void);
-
-#if DEBUG_ANY
-void bt_dumphex(char* msg, const u8* v, u16 len);
-#else
-#define bt_dumphex(...)
-#endif
-
-#define bt_read_u16(buffer)                     \
-    ((buffer)[0] + ((buffer)[1] << 8))
-
-#define bt_write_u16(buffer, value)             \
-    do {                                        \
-        (buffer)[0] = (value) & 0xFF;           \
-        (buffer)[1] = (value) >> 8;             \
-    } while (0)
-
-#define bt_read_u32(buffer)                     \
-    ((buffer)[0] + ((buffer)[1] << 8) +         \
-     (buffer)[2] << 16 + ((buffer)[3] << 24))
-
-#define bt_write_u32(buffer, value)             \
-    do {                                        \
-        (buffer)[0] = (value) & 0xFF;           \
-        (buffer)[1] = ((value) >> 8) & 0xFF;    \
-        (buffer)[2] = ((value) >> 16) & 0xFF;   \
-        (buffer)[3] = ((value) >> 24) & 0xFF;   \
-    } while (0)
 
 #endif // _BLUETOOTH_H
