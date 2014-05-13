@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+#ifdef EXPERIMENTAL
+
 #include "bluetooth.h"
 
 static struct {
@@ -184,3 +186,5 @@ static void read_data_element(u8**input, u8* type, u32* length, u8** data)
     *data = *input + hdrlen;
     *input += hdrlen + *length;
 }
+
+#endif // EXPERIMENTAL

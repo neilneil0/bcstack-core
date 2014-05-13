@@ -17,10 +17,11 @@
 #ifndef _RFCOMM_SPEC_H_
 #define _RFCOMM_SPEC_H_
 
-#define RFCOMM_SABM
-#define RFCOMM_UA
-#define RFCOMM_DISC
-#define RFCOMM_DM
-#define RFCOMM_UIH
+#define RFCOMM_PF              0x10
+#define RFCOMM_SABM            0x3F
+#define RFCOMM_UA              0x73
+#define RFCOMM_DISC            0x53
+#define RFCOMM_DM              0x0F
+#define RFCOMM_UIH             0xEF
 
 #endif // _RFCOMM_SPEC_H_

@@ -14,7 +14,12 @@
    limitations under the License.
 */
 
+#ifdef EXPERIMENTAL
+
 #include "bluetooth.h"
+
+static struct {
+} rfcomm;
 
 u8 rfcomm_input(u8* input, u16 isize)
 {
@@ -44,3 +49,5 @@ u8 rfcomm_input(u8* input, u16 isize)
 u8 rfcomm_output(u8* output, u16* osize)
 {
 }
+
+#endif // EXPERIMENTAL

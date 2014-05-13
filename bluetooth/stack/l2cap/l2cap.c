@@ -24,12 +24,14 @@
 #define SIG_OUTPUT          0x01
 #define SDP_OUTPUT          0x02
 #define ATT_OUTPUT          0x04
-#define RFCOMM_OUTPUT      0x08
+#define RFCOMM_OUTPUT       0x08
 
 static struct {
     u8  outputs;
+#ifndef EXPERIMENTAL
     u16 sdp_cid;
     u16 rfcomm_cid;
+#endif // EXPERIMENTAL
     u16 offset;
     u16 length;
     u8  buffer[CFG_L2CAP_MTU_EDR];
@@ -113,6 +115,7 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
                 if (l2cap_sig_input(input + 4, isize - 4)) {
                     l2cap.outputs |= SIG_OUTPUT;
                 }
+#ifdef EXPERIMENTAL
             } else if (cid == l2cap.sdp_cid) {
                 if (sdp_input(input + 4, isize - 4)) {
                     l2cap.outputs |= SDP_OUTPUT;
@@ -121,6 +124,7 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
                 if (rfcomm_input(input + 4, isize - 4)) {
                     l2cap.outputs |= RFCOMM_OUTPUT;
                 }
+#endif // EXPERIMENTAL
             }
         }
     }
@@ -151,6 +155,7 @@ u8 l2cap_output(u8* output, u16* osize, u8* edr)
         bt_write_u16(output + 2, L2CAP_SIG_CID);
         *osize = payload_size + 4;
         *edr = 1;
+#ifdef EXPERIMENTAL
     } else if (l2cap.outputs & SDP_OUTPUT) {
         l2cap.outputs &= ~SDP_OUTPUT;
         if (sdp_output(output + 4, &payload_size)) {
@@ -169,6 +174,7 @@ u8 l2cap_output(u8* output, u16* osize, u8* edr)
         bt_write_u16(output + 2, l2cap.rfcomm_cid);
         *osize = payload_size + 4;
         *edr = 1;
+#endif // EXPERIMENTAL
     } else {
         *osize = 0;
     }
@@ -232,6 +238,7 @@ static u8 l2cap_sig_output(u8* output, u16* osize)
     switch (l2cap.request.code) {
     case L2CAP_CONNECTION_REQUEST:
         switch (l2cap.request.u.connection.psm) {
+#ifdef EXPERIMENTAL
         case L2CAP_SDP_PSM:
             l2cap.sdp_cid = l2cap.request.u.connection.scid;
             result = L2CAP_CONNECTION_SUCCESSFUL;
@@ -240,6 +247,7 @@ static u8 l2cap_sig_output(u8* output, u16* osize)
             l2cap.rfcomm_cid = l2cap.request.u.connection.scid;
             result = L2CAP_CONNECTION_SUCCESSFUL;
             break;
+#endif // EXPERIMENTAL
         default:
             result = L2CAP_PSM_NOT_SUPPORTED;
         }

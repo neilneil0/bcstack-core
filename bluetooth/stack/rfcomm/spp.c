@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+#ifdef EXPERIMENTAL
+
 #include "bluetooth.h"
 
 static const u8 spp_service_class_id_list[] = {
@@ -71,3 +73,5 @@ const sdp_record_t spp_record = {
     spp_attrs,
     sizeof(spp_attrs) / sizeof(spp_attrs[0]),
 };
+
+#endif // EXPERIMENTAL
