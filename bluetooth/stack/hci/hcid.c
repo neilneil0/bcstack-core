@@ -68,6 +68,14 @@ static void hci_le_long_term_key_req( u8* data, u8 len );
 static void hci_acl_received(u8* data, u16 len);
 static void hci_send_acl(u8* buffer, u16 size);
 
+#if DEBUG_HCI
+#define hci_printf printf
+#define hci_dumphex bt_dumphex
+#else
+#define hci_printf(...)
+#define hci_dumphex(...)
+#endif
+
 // HCI Reset Sequence
 static const u8 hci_reset_seq[] = {
     0x03, 0x0C, 0x00, // reset
@@ -138,7 +146,7 @@ static void hci_send_command(u8* buffer, u16 size)
             send_cmd = 1;
 
             if ((hci.curr_reset_cmd[0] == 0) && (hci.curr_reset_cmd[1] == 0)) {
-                printf("radio initialized\n");
+                hci_printf("radio initialized\n");
                 hci.tasks.reset = 0;
             }
         } else if (hci.tasks.set_adv_params) {
@@ -194,7 +202,7 @@ static void hci_send_command(u8* buffer, u16 size)
             }
             send_cmd = 1;
 
-            printf("adv_en = %x\n", buffer[3]);
+            hci_printf("adv_en = %x\n", buffer[3]);
         } else if (hci.tasks.write_scan_en) {
             static const u8 hci_write_scan_en[] = {0x1A, 0xC, 1, 0};
 
@@ -210,7 +218,7 @@ static void hci_send_command(u8* buffer, u16 size)
             }
             send_cmd = 1;
 
-            printf("scan enable = %x\n", buffer[3]);
+            hci_printf("scan enable = %x\n", buffer[3]);
         } else if (hci.tasks.accept_conn) {
             hci.tasks.accept_conn = 0;
 
@@ -221,7 +229,7 @@ static void hci_send_command(u8* buffer, u16 size)
             buffer[9] = 1;
 
             send_cmd = 1;
-            printf("accept conn\n");
+            hci_printf("accept conn\n");
         } else if (hci.tasks.io_cap_reply) {
             hci.tasks.io_cap_reply = 0;
 
@@ -248,7 +256,7 @@ static void hci_send_command(u8* buffer, u16 size)
         if (send_cmd) {
             cmdlen = buffer[2] + 3;
 
-            bt_dumphex("CMD", buffer, cmdlen);
+            hci_dumphex("CMD", buffer, cmdlen);
             hci_write(BT_COMMAND_CHANNEL, cmdlen);
 
             hci.ncmds--;
@@ -274,7 +282,7 @@ static void hci_event_received(u8* data, u16 len)
     param_len = data[1];
     param = data + 2;
 
-    bt_dumphex("EVT", data, len);
+    hci_dumphex("EVT", data, len);
     
     switch (event_code) {
     case HCI_CONN_CMPLT_EVT:
@@ -333,7 +341,7 @@ static void hci_event_received(u8* data, u16 len)
 static void hci_conn_cmplt( u8* data, u8 len )
 {
     if (data[0] == 0) {
-        printf("edr connected\n");
+        hci_printf("edr connected\n");
 
         hci.edr.hconn = bt_read_u16(data + 1);
 
@@ -357,11 +365,11 @@ static void hci_disconn_cmplt( u8* data, u8 len )
     handle = bt_read_u16(data + 1);
 
     if (handle == hci.edr.hconn) {
-        printf("edr disconnected\n");
+        hci_printf("edr disconnected\n");
         hci.edr.hconn = 0;
         hci.tasks.write_scan_en = 1;
     } else if (handle == hci.le.hconn) {
-        printf("le disconnected\n");
+        hci_printf("le disconnected\n");
         hci.le.hconn = 0;
         hci.tasks.set_adv_en = 1;
     }
@@ -416,7 +424,7 @@ static void hci_simple_pair_cmplt( u8* data, u8 len )
 
 static void hci_le_conn_cmplt( u8* data, u8 len )
 {
-    printf("le connected\n");
+    hci_printf("le connected\n");
 
     hci.le.hconn = bt_read_u16(data + 2);
     hci.tasks.set_adv_en = 1;
@@ -447,7 +455,7 @@ static void hci_acl_received(u8* input, u16 isize)
     u8* req;
     u16 reqlen;
 
-    bt_dumphex("ACLI", input, isize);
+    hci_dumphex("ACLI", input, isize);
 
     /* acl format
        bits 0-11   handle
@@ -484,7 +492,7 @@ static void hci_send_acl(u8* output, u16 osize)
         }
         bt_write_u16(output + 2, payload_size);
 
-        bt_dumphex("ACLO", output, payload_size + 4);
+        hci_dumphex("ACLO", output, payload_size + 4);
         hci_write(BT_ACL_OUT_CHANNEL, payload_size + 4);
     }
 }

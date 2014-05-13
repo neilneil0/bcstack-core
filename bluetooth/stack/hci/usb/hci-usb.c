@@ -47,10 +47,10 @@ static uint8_t acl_out_buffer[CFG_HCI_USB_ACL_MTU];
 
 static u8 cmd_completed, acl_out_completed;
 
-#if 0
-#define usb_info printf
+#if DEBUG_USB
+#define usb_printf printf
 #else
-#define usb_info(...)
+#define usb_printf(...)
 #endif
 
 static void LIBUSB_CALL usb_cb(struct libusb_transfer *transfer)
@@ -58,7 +58,7 @@ static void LIBUSB_CALL usb_cb(struct libusb_transfer *transfer)
     int i, resubmit, r;
 
 	if (transfer->status != LIBUSB_TRANSFER_COMPLETED) {
-		usb_info("usb xfer incompleted ep=%02X, status=%d\n", transfer->endpoint, transfer->status);
+		usb_printf("usb xfer incompleted ep=%02X, status=%d\n", transfer->endpoint, transfer->status);
 		libusb_free_transfer(transfer);
 		return;
 	}
@@ -89,12 +89,12 @@ static void LIBUSB_CALL usb_cb(struct libusb_transfer *transfer)
         }
     }
 
-	usb_info("usb callback ep=%02X len=%d\n", transfer->endpoint, transfer->actual_length);
+	usb_printf("usb callback ep=%02X len=%d\n", transfer->endpoint, transfer->actual_length);
 
     for (i=0; i<transfer->actual_length; i++) {
-        usb_info("%02x ", transfer->buffer[i]);
+        usb_printf("%02x ", transfer->buffer[i]);
     }
-    usb_info("\n");
+    usb_printf("\n");
 }
 
 void hci_setup(void)

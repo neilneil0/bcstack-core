@@ -24,7 +24,11 @@
 #define RFCOMM_OUTPUT       0x08
 #define VPORT_OUTPUT        0x10
 
-#define L2CAP_VPORT_PSM           101
+#if DEBUG_L2CAP
+#define l2cap_printf printf
+#else
+#define l2cap_printf(...)
+#endif
 
 static struct {
     u8  outputs;
@@ -90,7 +94,7 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
     l2len = bt_read_u16(input);
     cid = bt_read_u16(input + 2);
 
-    printf("L2IN %x,%x\n", cid, l2len);
+    l2cap_printf("L2IN %x,%x\n", cid, l2len);
 
     if (cid == L2CAP_ATT_CID) {
         // le
@@ -109,12 +113,6 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
             l2cap.length = l2len;
         }
 
-#if DEBUG
-    if (l2cap.offset + isize - 4 > l2cap.length) {
-    printf("l2cap error! len=%d off=%d isize=%d\n",
-        l2cap.length, l2cap.offset, isize);
-}
-#endif
         memcpy(l2cap.buffer + l2cap.offset,
                input + 4, isize - 4);
         l2cap.offset += isize - 4;
@@ -211,9 +209,7 @@ static u8 l2cap_sig_input(u8* input, u16 isize)
     l2cap.request.code = input[0];
     l2cap.request.id = input[1];
 
-#if DEBUG
-    printf("L2SIG-IN: 0x%x\n", l2cap.request.code);
-#endif
+    l2cap_printf("L2SIG-IN: 0x%x\n", l2cap.request.code);
 
     switch (l2cap.request.code) {
     case L2CAP_COMMAND_REJECT:
@@ -252,9 +248,8 @@ static u8 l2cap_sig_output(u8* output, u16* osize)
     u8 has_output = 0;
     u16 result;
 
-#if DEBUG
-    printf("L2SIG-OUT: 0x%x\n", l2cap.request.code);
-#endif
+    l2cap_printf("L2SIG-OUT: 0x%x\n", l2cap.request.code);
+
     *osize = 0;
 
     switch (l2cap.request.code) {
@@ -270,7 +265,7 @@ static u8 l2cap_sig_output(u8* output, u16* osize)
             result = L2CAP_CONNECTION_SUCCESSFUL;
             break;
 #endif // EXPERIMENTAL
-        case L2CAP_VPORT_PSM:
+        case CFG_L2CAP_VPORT_PSM:
             l2cap.vport_cid = l2cap.request.u.connection.scid;
             result = L2CAP_CONNECTION_SUCCESSFUL;
             break;

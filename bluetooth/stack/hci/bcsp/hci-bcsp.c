@@ -17,10 +17,10 @@
 #include "bluetooth.h"
 #include "ubcsp.h"
 
-#if 1
-#define bcsp_info printf
+#if DEBUG_BCSP
+#define bcsp_printf printf
 #else
-#define bcsp_info(...)
+#define bcsp_printf(...)
 #endif
 
 #define BCSP_INTERNAL_CHANNEL 0
@@ -88,7 +88,7 @@ void hci_setup(void)
         }
 	}
 
-    bcsp_info("ubcsp initialized\n");
+    bcsp_printf("ubcsp initialized\n");
 }
 
 void hci_shutdown(void)
@@ -115,7 +115,7 @@ void hci_write(u8 channel, u16 size)
         bcsp_channel = BCSP_ACL_CHANNEL;
         break;
     default:
-        bcsp_info("bcsp.write: unknown channel\n");
+        bcsp_printf("bcsp.write: unknown channel\n");
     }
 
 	bcsp.txpkt.channel  = bcsp_channel;
@@ -155,7 +155,7 @@ void hci_loop(void)
             hci_handle_transport_event(BT_ACL_IN_CHANNEL, bcsp.rxpkt.payload, bcsp.rxpkt.length);
             break;
         default:
-            bcsp_info("BCSP RX Unknown Channel 0x%x\n", bcsp.rxpkt.channel);
+            bcsp_printf("BCSP RX Unknown Channel 0x%x\n", bcsp.rxpkt.channel);
         }
 
         bcsp.rxpkt.length = CFG_HCI_UART_MTU_C2H;

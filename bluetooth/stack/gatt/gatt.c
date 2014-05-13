@@ -230,7 +230,7 @@ static u8 bt_gatt_find(u16 start_handle, u16 end_handle,
     end_service = end_handle >> 8;
     if (end_service >= services_num) end_service = services_num - 1;
 
-#if DEBUG
+#if GATT_VERBOSE
     printf("search attrs\n");
     printf("handle range: <%04x, %04x>\n", start_handle, end_handle);
     printf("service range: <%04x, %04x>\n", start_service, end_service);
@@ -257,7 +257,7 @@ static u8 bt_gatt_find(u16 start_handle, u16 end_handle,
 
         if (start_index > end_index) continue;
 
-#if DEBUG
+#if GATT_VERBOSE
         printf("service %02x, index range <%02x, %02x>\n",
                i, start_index, end_index);
 #endif
@@ -281,7 +281,7 @@ static u8 bt_gatt_find(u16 start_handle, u16 end_handle,
                     continue;
                 }
             }
-#if DEBUG
+#if GATT_VERBOSE
             if (flags & BT_GATT_PRINT_ATTR) {
                 printf("    attr <%04x, %04x, %04x>",
                        handle,

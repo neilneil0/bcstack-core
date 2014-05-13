@@ -16,7 +16,7 @@
 
 #include "bluetooth.h"
 
-#if DEBUG
+#if DEBUG_ANY
 void bt_dumphex(char* msg, const u8* v, u16 len)
 {
     int i;

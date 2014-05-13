@@ -49,4 +49,10 @@ void bt_gatt_print(void);
 u8 bt_gatt_input(u8* input, u16 isize);
 u8 bt_gatt_output(u8* output, u16* osize);
 
+#if DEBUG_GATT
+#define gatt_printf printf
+#else
+#define gatt_printf(...)
+#endif
+
 #endif // _GATT_H_

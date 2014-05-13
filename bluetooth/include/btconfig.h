@@ -17,6 +17,22 @@
 #ifndef _BTCONFIG_H_
 #define _BTCONFIG_H_
 
+/*** Debugging ***/
+#define DEBUG_USER       0
+#define DEBUG_BCSP       0
+#define DEBUG_USB        0
+#define DEBUG_HCI        0
+#define DEBUG_GATT       0
+#define DEBUG_L2CAP      0
+
+#define DEBUG_ANY (                             \
+    DEBUG_USER |                                \
+    DEBUG_BCSP |                                \
+    DEBUG_USB |                                 \
+    DEBUG_HCI |                                 \
+    DEBUG_GATT |                                \
+    DEBUG_L2CAP)
+
 /*** L2CAP configurations ***/
 
 // Low Energy link MTU
@@ -24,6 +40,8 @@
 
 // EDR link MTU
 #define CFG_L2CAP_MTU_EDR     1021
+
+#define CFG_L2CAP_VPORT_PSM   0x0801
 
 /*** UART transport configurations ***/
 
