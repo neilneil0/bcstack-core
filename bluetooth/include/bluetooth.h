@@ -46,9 +46,14 @@ typedef int8_t  s8;
 #include "hci.h"
 
 extern u8 bt_exit;
+
 void bt_setup(void);
 void bt_loop(void);
 void bt_shutdown(void);
+
+void app_setup(void);
+void app_loop(void);
+void app_shutdown(void);
 
 #if DEBUG_ANY
 void bt_dumphex(char* msg, const u8* v, u16 len);
