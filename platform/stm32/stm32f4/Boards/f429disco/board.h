@@ -44,7 +44,7 @@
 
 #define DBGPORT                           USART2
 #define DBGPORT_CLK_ENABLE()              __USART2_CLK_ENABLE()
-#define DBGPORT_TX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE() 
+#define DBGPORT_TX_GPIO_CLK_ENABLE()      __GPIOD_CLK_ENABLE() 
 
 #define DBGPORT_FORCE_RESET()             __USART2_FORCE_RESET()
 #define DBGPORT_RELEASE_RESET()           __USART2_RELEASE_RESET()
