@@ -139,7 +139,8 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
             }
         }
     }
-    return 0;
+
+    return l2cap.outputs;
 }
 
 u8 l2cap_output(u8* output, u16* osize, u8* edr)
@@ -200,7 +201,7 @@ u8 l2cap_output(u8* output, u16* osize, u8* edr)
         *osize = 0;
     }
 
-    return 0;
+    return l2cap.outputs;
 }
 
 static u8 l2cap_sig_input(u8* input, u16 isize)
