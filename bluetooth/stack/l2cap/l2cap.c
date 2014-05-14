@@ -139,7 +139,7 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
             }
         }
     }
-		return 0;
+    return 0;
 }
 
 u8 l2cap_output(u8* output, u16* osize, u8* edr)
