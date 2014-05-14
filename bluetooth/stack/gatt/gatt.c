@@ -34,7 +34,6 @@ static const bt_gatt_service_t *services[] = {
     &bt_led_service,
 };
 static const u8 services_num = sizeof(services)/sizeof(bt_gatt_service_t*);
-static u8 client_mtu;
 
 #define BT_GATT_MATCH_TYPE       0x0001
 #define BT_GATT_MATCH_VALUE      0x0002
@@ -341,7 +340,6 @@ static u8 bt_gatt_find(u16 start_handle, u16 end_handle,
         }
     }
 
-end:
     if (woffset <= 1) {
         *size = 0;
         return ATTR_NOT_FOUND;
@@ -378,11 +376,13 @@ u8 bt_gatt_read_blob(u16 handle, u8* buffer, u16* size, u8 offset)
     return 1;
 }
 
+#if 0
 u8 bt_gatt_read_multi(u16* handles, u8 handle_count, u8* buffer, u16* size)
 {
     // TODO
     return 0;
 }
+#endif
 
 u8 bt_gatt_write(u16 handle, u8* value, u8 vlen)
 {

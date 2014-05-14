@@ -57,4 +57,8 @@
 #define CFG_HCI_USB_EVENT_MTU      256
 #define CFG_HCI_USB_ACL_MTU        1024
 
+/*** RFCOMM configurations ***/
+
+#define CFG_RFCOMM_NUM_CHANNELS    2
+
 #endif // _BTCONFIG_H_

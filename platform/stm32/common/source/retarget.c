@@ -14,8 +14,7 @@
   limitations under the License.
 */
 
-#include "stm32f4xx_hal.h"
-#include "stm32f401_discovery.h"
+#include "board.h"
 #include "bluetooth.h"
 
 #if !(HAVE_SHELL)
@@ -24,22 +23,6 @@ int fputc(int ch, FILE *f)
     return ch;
 }
 #else // HAVE_SHELL
-
-#define DBGPORT                           USART6
-#define DBGPORT_CLK_ENABLE()              __USART6_CLK_ENABLE()
-#define DBGPORT_TX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE() 
-
-#define DBGPORT_FORCE_RESET()             __USART6_FORCE_RESET()
-#define DBGPORT_RELEASE_RESET()           __USART6_RELEASE_RESET()
-
-/* Definition for DBGPORT Pins */
-#define DBGPORT_TX_PIN                    GPIO_PIN_6
-#define DBGPORT_TX_GPIO_PORT              GPIOC
-#define DBGPORT_TX_AF                     GPIO_AF8_USART6
-
-/* Definition for DBGPORT's NVIC */
-#define DBGPORT_IRQn                      USART6_IRQn
-#define DBGPORT_IRQHandler                USART6_IRQHandler
 
 UART_HandleTypeDef dbgport;
 

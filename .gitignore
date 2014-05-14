@@ -28,8 +28,13 @@ bcstack
 *.bak
 
 platform/stm32/common/MDK-ARM/STM32F401-Discovery/*
+platform/stm32/common/MDK-ARM/STM32F429I-Discovery/*
 *.dep
 
 *.lst
 
 bluetooth/include/usrconfig.h
+
+*.crf
+
+*.d

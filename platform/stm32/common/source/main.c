@@ -13,35 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-#include "stm32f4xx_hal.h"
-#include "stm32f401_discovery.h"
+#include "board.h"
 #include "bluetooth.h"
 
 #if BT_UART_LOOPBACK
 void bt_uart_loopback(void);
 #endif
 
-static void SystemClock_Config(void);
+void board_setup(void);
 void Error_Handler(void);
+#if (HAVE_SHELL)
+void dbguart_open(void);
+#endif
 
 u8 bt_exit = 0;
 
 int main(void)
 {
-    HAL_Init();
-  
-    BSP_LED_Init(LED3);
-    BSP_LED_Init(LED4);
-    BSP_LED_Init(LED5);
-    BSP_LED_Init(LED6);
-
-    SystemClock_Config();  
+    board_setup();
 
 #if (HAVE_SHELL)
     dbguart_open();
     printf("welcome to bcstack\n");
     HAL_Delay(1000);
-    printf("platform = stm32\n");
+    printf("board = %s\n", BOARD_NAME);
 #endif
 
 #if BT_UART_LOOPBACK
@@ -53,66 +48,6 @@ int main(void)
 	while (bt_exit == 0) {
         app_loop();
 	}
-}
-
-void led_state_changed(u8 new_state)
-{
-    if (new_state & 0x1) {
-        BSP_LED_On(LED3);
-    } else {
-        BSP_LED_Off(LED3);
-    }
-
-    if (new_state & 0x2) {
-        BSP_LED_On(LED4);
-    } else {
-        BSP_LED_Off(LED4);
-    }
-
-    if (new_state & 0x4) {
-        BSP_LED_On(LED5);
-    } else {
-        BSP_LED_Off(LED5);
-    }
-
-    if (new_state & 0x8) {
-        BSP_LED_On(LED6);
-    } else {
-        BSP_LED_Off(LED6);
-    }
-}
-
-static void SystemClock_Config(void)
-{
-    RCC_ClkInitTypeDef RCC_ClkInitStruct;
-    RCC_OscInitTypeDef RCC_OscInitStruct;
-
-    __PWR_CLK_ENABLE();
-
-    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-
-    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-    RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-    RCC_OscInitStruct.PLL.PLLM = 8;
-    RCC_OscInitStruct.PLL.PLLN = 336;
-    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
-    RCC_OscInitStruct.PLL.PLLQ = 7;
-    if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-    {
-        Error_Handler();
-    }
- 
-    RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
-    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-    if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-    {
-        Error_Handler();
-    }
 }
 
 void Error_Handler(void)

@@ -450,10 +450,6 @@ static void hci_acl_received(u8* input, u16 isize)
 {
     u8 handle;
     u8 flags;
-    u8 acl_len;
-    u8 reqcode;
-    u8* req;
-    u16 reqlen;
 
     hci_dumphex("ACLI", input, isize);
 
@@ -466,7 +462,7 @@ static void hci_acl_received(u8* input, u16 isize)
 
     handle = bt_read_u16(input) & 0xFFF;
     flags = input[1] >> 4;
-    acl_len = bt_read_u16(input +2);
+    //acl_len = bt_read_u16(input +2);
 
     if ((hci.le.hconn != handle) &&
         (hci.edr.hconn != handle)) return;

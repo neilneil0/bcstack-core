@@ -73,7 +73,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
       <CpuCode>255</CpuCode>
       <Books>
@@ -252,29 +252,205 @@
     </TargetOption>
   </Target>
 
-  <Group>
-    <GroupName>Drivers/BSP/STM32F401-Discovery</GroupName>
-    <tvExp>0</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>1</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>69</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32f4\Drivers\BSP\STM32F401-Discovery\stm32f401_discovery.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f401_discovery.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-  </Group>
+  <Target>
+    <TargetName>STM32F429-Discovery</TargetName>
+    <ToolsetNumber>0x4</ToolsetNumber>
+    <ToolsetName>ARM-ADS</ToolsetName>
+    <TargetOption>
+      <CLKADS>180000000</CLKADS>
+      <OPTTT>
+        <gFlags>1</gFlags>
+        <BeepAtEnd>1</BeepAtEnd>
+        <RunSim>0</RunSim>
+        <RunTarget>1</RunTarget>
+      </OPTTT>
+      <OPTHX>
+        <HexSelection>1</HexSelection>
+        <FlashByte>65535</FlashByte>
+        <HexRangeLowAddress>0</HexRangeLowAddress>
+        <HexRangeHighAddress>0</HexRangeHighAddress>
+        <HexOffset>0</HexOffset>
+      </OPTHX>
+      <OPTLEX>
+        <PageWidth>79</PageWidth>
+        <PageLength>66</PageLength>
+        <TabStop>8</TabStop>
+        <ListingPath></ListingPath>
+      </OPTLEX>
+      <ListingPage>
+        <CreateCListing>1</CreateCListing>
+        <CreateAListing>1</CreateAListing>
+        <CreateLListing>1</CreateLListing>
+        <CreateIListing>0</CreateIListing>
+        <AsmCond>1</AsmCond>
+        <AsmSymb>1</AsmSymb>
+        <AsmXref>0</AsmXref>
+        <CCond>1</CCond>
+        <CCode>0</CCode>
+        <CListInc>0</CListInc>
+        <CSymb>0</CSymb>
+        <LinkerCodeListing>0</LinkerCodeListing>
+      </ListingPage>
+      <OPTXL>
+        <LMap>1</LMap>
+        <LComments>1</LComments>
+        <LGenerateSymbols>1</LGenerateSymbols>
+        <LLibSym>1</LLibSym>
+        <LLines>1</LLines>
+        <LLocSym>1</LLocSym>
+        <LPubSym>1</LPubSym>
+        <LXref>0</LXref>
+        <LExpSel>0</LExpSel>
+      </OPTXL>
+      <OPTFL>
+        <tvExp>1</tvExp>
+        <tvExpOptDlg>0</tvExpOptDlg>
+        <IsCurrentTarget>1</IsCurrentTarget>
+      </OPTFL>
+      <CpuCode>255</CpuCode>
+      <DllOpt>
+        <SimDllName>SARMCM3.DLL</SimDllName>
+        <SimDllArguments> -REMAP -MPU</SimDllArguments>
+        <SimDlgDllName>DCM.DLL</SimDlgDllName>
+        <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
+        <TargetDllName>SARMCM3.DLL</TargetDllName>
+        <TargetDllArguments> -MPU</TargetDllArguments>
+        <TargetDlgDllName>TCM.DLL</TargetDlgDllName>
+        <TargetDlgDllArguments>-pCM4</TargetDlgDllArguments>
+      </DllOpt>
+      <DebugOpt>
+        <uSim>0</uSim>
+        <uTrg>1</uTrg>
+        <sLdApp>1</sLdApp>
+        <sGomain>1</sGomain>
+        <sRbreak>1</sRbreak>
+        <sRwatch>1</sRwatch>
+        <sRmem>1</sRmem>
+        <sRfunc>1</sRfunc>
+        <sRbox>1</sRbox>
+        <tLdApp>1</tLdApp>
+        <tGomain>1</tGomain>
+        <tRbreak>1</tRbreak>
+        <tRwatch>1</tRwatch>
+        <tRmem>1</tRmem>
+        <tRfunc>1</tRfunc>
+        <tRbox>1</tRbox>
+        <tRtrace>0</tRtrace>
+        <sRSysVw>1</sRSysVw>
+        <tRSysVw>1</tRSysVw>
+        <sRunDeb>0</sRunDeb>
+        <sLrtime>0</sLrtime>
+        <nTsel>1</nTsel>
+        <sDll></sDll>
+        <sDllPa></sDllPa>
+        <sDlgDll></sDlgDll>
+        <sDlgPa></sDlgPa>
+        <sIfile></sIfile>
+        <tDll></tDll>
+        <tDllPa></tDllPa>
+        <tDlgDll></tDlgDll>
+        <tDlgPa></tDlgPa>
+        <tIfile></tIfile>
+        <pMon>BIN\UL2CM3.DLL</pMon>
+      </DebugOpt>
+      <TargetDriverDllRegistry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>DLGTARM</Key>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>ARMDBGFLAGS</Key>
+          <Name></Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name>(105=-1,-1,-1,-1,0)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>UL2CM3</Key>
+          <Name>UL2CM3(-S0 -C0 -P0 )  -FN1 -FC1000 -FD20000000 -FF0STM32F4xx_2048 -FL0200000 -FS08000000 -FP0($$Device:STM32F429ZI$Flash\STM32F4xx_2048.FLM)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>ST-LINKIII-KEIL_SWO</Key>
+          <Name>-U-O206 -O206 -S3 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F4xx_256.FLM -FS08000000 -FL040000 -FP0($$Device:STM32F401CC$Flash\STM32F4xx_256.FLM)</Name>
+        </SetRegEntry>
+      </TargetDriverDllRegistry>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>123</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134226084</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>Z:\junfenggeng\kuaipan\bcstack-core\bluetooth\host\hci\hci-host.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32F401_Discovery\../../../../bluetooth/host/hci/hci-host.c\123</Expression>
+        </Bp>
+      </Breakpoint>
+      <WatchWindow1>
+        <Ww>
+          <count>0</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>bcsp</ItemText>
+        </Ww>
+      </WatchWindow1>
+      <MemoryWindow1>
+        <Mm>
+          <WinNumber>1</WinNumber>
+          <SubType>2</SubType>
+          <ItemText>0x40004400</ItemText>
+        </Mm>
+      </MemoryWindow1>
+      <Tracepoint>
+        <THDelay>0</THDelay>
+      </Tracepoint>
+      <DebugFlag>
+        <trace>0</trace>
+        <periodic>0</periodic>
+        <aLwin>0</aLwin>
+        <aCover>0</aCover>
+        <aSer1>0</aSer1>
+        <aSer2>0</aSer2>
+        <aPa>0</aPa>
+        <viewmode>1</viewmode>
+        <vrSel>0</vrSel>
+        <aSym>0</aSym>
+        <aTbox>0</aTbox>
+        <AscS1>0</AscS1>
+        <AscS2>0</AscS2>
+        <AscS3>0</AscS3>
+        <aSer3>0</aSer3>
+        <eProf>0</eProf>
+        <aLa>0</aLa>
+        <aPa1>0</aPa1>
+        <AscS4>0</AscS4>
+        <aSer4>0</aSer4>
+        <StkLoc>0</StkLoc>
+        <TrcWin>0</TrcWin>
+        <newCpu>0</newCpu>
+        <uProt>0</uProt>
+      </DebugFlag>
+      <LintExecutable></LintExecutable>
+      <LintConfigFile></LintConfigFile>
+      <SystemViewers>
+        <Entry>
+          <Name>System Viewer\USART2</Name>
+          <WinId>35905</WinId>
+        </Entry>
+      </SystemViewers>
+    </TargetOption>
+  </Target>
 
   <Group>
     <GroupName>stm32f4xx/user</GroupName>
@@ -283,8 +459,8 @@
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>2</FileNumber>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>1</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -299,8 +475,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>3</FileNumber>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>2</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -315,8 +491,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>4</FileNumber>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>3</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -339,8 +515,8 @@
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>5</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>4</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -355,8 +531,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>6</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>5</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -371,8 +547,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>7</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>6</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -387,8 +563,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>8</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>7</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -403,8 +579,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>9</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>8</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -419,8 +595,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>10</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>9</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -435,8 +611,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>11</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>10</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -451,8 +627,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>12</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>11</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -467,8 +643,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>13</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>12</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -483,8 +659,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>14</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>13</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -499,8 +675,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>15</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>14</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -515,8 +691,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>16</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>15</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -531,8 +707,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>17</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>16</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -547,8 +723,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>18</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>17</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -563,8 +739,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>19</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>18</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -581,38 +757,14 @@
   </Group>
 
   <Group>
-    <GroupName>stm32f401/startup</GroupName>
+    <GroupName>main</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>20</FileNumber>
-      <FileType>2</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>65</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>194</TopLine>
-      <CurrentLine>198</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>startup_stm32f401xc.s</PathWithFileName>
-      <FilenameWithoutPath>startup_stm32f401xc.s</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-  </Group>
-
-  <Group>
-    <GroupName>main</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>21</FileNumber>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>19</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -627,15 +779,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>22</FileNumber>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>20</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>13</TopLine>
-      <CurrentLine>23</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\source\bt_uart.c</PathWithFileName>
       <FilenameWithoutPath>bt_uart.c</FilenameWithoutPath>
@@ -643,15 +795,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>23</FileNumber>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>21</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>59</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>67</TopLine>
-      <CurrentLine>42</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\source\retarget.c</PathWithFileName>
       <FilenameWithoutPath>retarget.c</FilenameWithoutPath>
@@ -662,13 +814,13 @@
 
   <Group>
     <GroupName>app</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>6</GroupNumber>
-      <FileNumber>24</FileNumber>
+      <GroupNumber>4</GroupNumber>
+      <FileNumber>22</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -691,8 +843,8 @@
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>25</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>23</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -707,8 +859,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>26</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>24</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -723,8 +875,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>27</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>25</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -739,15 +891,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>28</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>26</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\devinfo-service.c</PathWithFileName>
       <FilenameWithoutPath>devinfo-service.c</FilenameWithoutPath>
@@ -755,15 +907,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>29</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>27</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>63</TopLine>
+      <CurrentLine>64</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\stack\gatt\gatt.c</PathWithFileName>
       <FilenameWithoutPath>gatt.c</FilenameWithoutPath>
@@ -771,8 +923,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>30</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>28</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -787,15 +939,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>31</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>29</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\stack\hci\bcsp\hci-bcsp.c</PathWithFileName>
       <FilenameWithoutPath>hci-bcsp.c</FilenameWithoutPath>
@@ -803,15 +955,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>32</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>30</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\stack\hci\bcsp\ubcsp.c</PathWithFileName>
       <FilenameWithoutPath>ubcsp.c</FilenameWithoutPath>
@@ -819,15 +971,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>33</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>31</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>389</TopLine>
+      <CurrentLine>399</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\stack\hci\hcid.c</PathWithFileName>
       <FilenameWithoutPath>hcid.c</FilenameWithoutPath>
@@ -835,15 +987,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>34</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>32</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\stack\l2cap\l2cap.c</PathWithFileName>
       <FilenameWithoutPath>l2cap.c</FilenameWithoutPath>
@@ -851,15 +1003,15 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>35</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>33</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\stack\vport\vport.c</PathWithFileName>
       <FilenameWithoutPath>vport.c</FilenameWithoutPath>
@@ -867,8 +1019,8 @@
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>36</FileNumber>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>34</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -879,6 +1031,118 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\bluetooth\utils\debug.c</PathWithFileName>
       <FilenameWithoutPath>debug.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>stm32f401</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>35</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\startup_stm32f401xc.s</PathWithFileName>
+      <FilenameWithoutPath>startup_stm32f401xc.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>36</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\stm32f4\Boards\f401disco\f401disco-board.c</PathWithFileName>
+      <FilenameWithoutPath>f401disco-board.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>37</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\stm32f4\Drivers\BSP\STM32F401-Discovery\stm32f401_discovery.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f401_discovery.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>stm32f429</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>7</GroupNumber>
+      <FileNumber>38</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\startup_stm32f429xx.s</PathWithFileName>
+      <FilenameWithoutPath>startup_stm32f429xx.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>7</GroupNumber>
+      <FileNumber>39</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\stm32f4\Boards\f429disco\f429disco.c</PathWithFileName>
+      <FilenameWithoutPath>f429disco.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>7</GroupNumber>
+      <FileNumber>40</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\stm32f4\Drivers\BSP\STM32F429I-Discovery\stm32f429i_discovery.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f429i_discovery.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

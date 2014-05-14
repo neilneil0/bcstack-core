@@ -71,7 +71,7 @@ static const bt_devinfo_t null_devinfo = {
     null_string,
 };
 
-static bt_devinfo_t* devinfo = &null_devinfo;
+static const bt_devinfo_t* devinfo = &null_devinfo;
 
 void devinfo_set(bt_devinfo_t* _devinfo)
 {

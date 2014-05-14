@@ -54,7 +54,6 @@ static struct bcsp_globals_t {
 void hci_setup(void)
 {
     u8 activity, delay;
-    int timeout;
 
 	memset(&bcsp, 0, sizeof(bcsp));
 
@@ -73,7 +72,6 @@ void hci_setup(void)
 
 	ubcsp_receive_packet(&bcsp.rxpkt);
 
-    timeout = 0;
     activity = 0;
     delay = 0;
 	while (1) {

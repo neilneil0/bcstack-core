@@ -72,8 +72,8 @@ static u8 l2cap_sig_input(u8* input, u16 isize);
 static u8 l2cap_sig_output(u8* output, u16* osize);
 u8 l2cap_sig_input(u8* input, u16 isize);
 u8 l2cap_sig_output(u8* output, u16* osize);
-u8 l2cap_vport_input(u8* input, u16 isize);
-u8 l2cap_vport_output(u8* output, u16* osize);
+u8 vport_input(u8* input, u16 isize);
+u8 vport_output(u8* output, u16* osize);
 
 void l2cap_init()
 {
@@ -84,7 +84,7 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
 {
     u8 l2len;
     u16 cid;
-    u8 pb, bc;
+    u8 pb;
 
     /* l2cap format
        u16  length
@@ -105,7 +105,7 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
         // edr
 
         pb = flags & 0x3;
-        bc = flags >> 2;
+        //bc = flags >> 2;
 
         if (pb != HCI_PB_CONTINUE) {
             // first packet
@@ -139,6 +139,7 @@ u8 l2cap_input(u8* input, u16 isize, u8 flags)
             }
         }
     }
+		return 0;
 }
 
 u8 l2cap_output(u8* output, u16* osize, u8* edr)
