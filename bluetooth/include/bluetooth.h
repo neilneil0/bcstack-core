@@ -37,6 +37,7 @@ typedef int8_t  s8;
 #include "spec/hci-spec.h"
 #include "spec/l2cap-spec.h"
 #include "spec/sdp-spec.h"
+#include "spec/rfcomm-spec.h"
 #include "hci.h"
 #include "gap.h"
 #include "l2cap.h"

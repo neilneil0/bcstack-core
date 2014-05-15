@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-#ifdef EXPERIMENTAL
-
 #include "bluetooth.h"
+
+#ifdef EXPERIMENTAL
 
 static const u8 spp_service_class_id_list[] = {
     SDP_DES(3),

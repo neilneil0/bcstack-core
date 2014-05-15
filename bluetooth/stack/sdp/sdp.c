@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-#ifdef EXPERIMENTAL
-
 #include "bluetooth.h"
+
+#ifdef EXPERIMENTAL
 
 static struct {
     struct {
@@ -71,8 +71,8 @@ u8 sdp_input(u8* input, u16 isize)
 
 u8 sdp_output(u8* output, u16* osize)
 {
-    sdp_record_t* record;
-    sdp_attr_t* attr;
+    const sdp_record_t* record;
+    const sdp_attr_t* attr;
     u8 i;
     u8 offset;
 

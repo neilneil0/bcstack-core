@@ -41,7 +41,7 @@ static int acl_in_addr;
 static int acl_out_addr;
 
 static uint8_t cmd_buffer[CFG_HCI_USB_COMMAND_MTU + LIBUSB_CONTROL_SETUP_SIZE];
-static uint8_t evt_buffer[CMD_BUFFER_SIZE];
+static uint8_t evt_buffer[CFG_HCI_USB_EVENT_MTU];
 static uint8_t acl_in_buffer[CFG_HCI_USB_ACL_MTU];
 static uint8_t acl_out_buffer[CFG_HCI_USB_ACL_MTU];
 
@@ -103,7 +103,7 @@ void hci_setup(void)
 
 	r = libusb_init(NULL);
 	if (r < 0)
-		return r;
+		return;
 
 	devh = libusb_open_device_with_vid_pid(NULL, known_devices[1].vid, known_devices[1].pid);//TODO: search for device
     if (devh == NULL) {
@@ -162,7 +162,7 @@ void hci_setup(void)
     }
 
 out:
-    return r;
+    return;
 }
 
 void hci_shutdown(void)

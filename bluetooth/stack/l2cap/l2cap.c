@@ -32,7 +32,7 @@
 
 static struct {
     u8  outputs;
-#ifndef EXPERIMENTAL
+#ifdef EXPERIMENTAL
     u16 sdp_cid;
     u16 rfcomm_cid;
 #endif // EXPERIMENTAL
