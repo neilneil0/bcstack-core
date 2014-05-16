@@ -24,4 +24,13 @@
 #define RFCOMM_DM              0x0F
 #define RFCOMM_UIH             0xEF
 
+#define RFCOMM_TEST	    0x08
+#define RFCOMM_FCON	    0x28
+#define RFCOMM_FCOFF	0x18
+#define RFCOMM_MSC	    0x38
+#define RFCOMM_RPN	    0x24
+#define RFCOMM_RLS	    0x14
+#define RFCOMM_PN	    0x20
+#define RFCOMM_NSC	    0x04
+
 #endif // _RFCOMM_SPEC_H_

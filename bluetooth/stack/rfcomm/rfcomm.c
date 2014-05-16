@@ -19,6 +19,8 @@
 #ifdef EXPERIMENTAL
 
 #define RFCOMM_SEND_UA_FLAG    0x01
+#define RFCOMM_SEND_PN_FLAG    0x02
+#define RFCOMM_SEND_MSC_FLAG    0x04
 
 static struct {
     u8 output_mask;
@@ -26,6 +28,10 @@ static struct {
     struct {
         u8 flags;
     } channels[CFG_RFCOMM_NUM_CHANNELS];
+
+    struct {
+        u8 dlci;
+    } mcc;
 } rfcomm;
 
 #define RFCOMM_MARK_OUTPUT(ch, flag)            \
@@ -45,12 +51,18 @@ static void rfcomm_input_ua(u8* input, u16 isize);
 static void rfcomm_input_disc(u8* input, u16 isize);
 static void rfcomm_input_dm(u8* input, u16 isize);
 static void rfcomm_input_uih(u8* input, u16 isize);
+static void mcc_input(u8 ch, u8* input, u16 isize);
+static void mcc_input_pn(u8 ch, u8* input, u16 isize);
+static void mcc_input_msc(u8 ch, u8* input, u16 isize);
+static void user_input(u8 ch, u8* input, u16 isize);
 
 static void rfcomm_output_sabm(u8 ch, u8* output, u16* osize);
 static void rfcomm_output_ua(u8 ch, u8* output, u16* osize);
 static void rfcomm_output_disc(u8 ch, u8* output, u16* osize);
 static void rfcomm_output_dm(u8 ch, u8* output, u16* osize);
 static void rfcomm_output_uih(u8 ch, u8* output, u16* osize);
+static void rfcomm_output_pn(u8 ch, u8* output, u16* osize);
+static void rfcomm_output_msc(u8 ch, u8* output, u16* osize);
 
 /* reversed, 8-bit, poly=0x07 */
 static u8 rfcomm_crc_table[256] = {
@@ -150,6 +162,60 @@ static void rfcomm_input_dm(u8* input, u16 isize)
 
 static void rfcomm_input_uih(u8* input, u16 isize)
 {
+    u8  ch = input[0] >> 3;
+    u8  control = input[1];
+    u16 length;
+    u8* info = input + 3;
+    u16 infolen = isize - 4;
+
+    length = input[2] >> 1;
+
+    if (0 == (input[2] & 1)) {
+        length |= ((u16)input[3]) << 7;
+        info++;
+        infolen--;
+    }
+
+    if (ch == 0) {
+        // multiplexer control
+        mcc_input(ch, info, infolen);
+    } else {
+        user_input(ch, info, infolen);
+    }
+}
+
+static void mcc_input(u8 ch, u8* input, u16 isize)
+{
+    u8 type = input[0] >> 2;
+    u16 length = input[1] >> 1;
+    u8* param = input + 2;
+
+    switch (type) {
+    case RFCOMM_PN:
+        mcc_input_pn(ch, param, length);
+        break;
+    case RFCOMM_MSC:
+        mcc_input_msc(ch, param, length);
+        break;
+    }
+}
+
+static void mcc_input_pn(u8 ch, u8* input, u16 isize)
+{
+    rfcomm.mcc.dlci = input[0];
+    RFCOMM_MARK_OUTPUT(ch, RFCOMM_SEND_PN_FLAG);
+}
+
+static void mcc_input_msc(u8 ch, u8* input, u16 isize)
+{
+    printf("MSCC\n");
+
+    rfcomm.mcc.dlci = input[0];
+    RFCOMM_MARK_OUTPUT(ch, RFCOMM_SEND_MSC_FLAG);
+}
+
+static void user_input(u8 ch, u8* input, u16 isize)
+{
 }
 
 u8 rfcomm_output(u8* output, u16* osize)
@@ -162,6 +228,12 @@ u8 rfcomm_output(u8* output, u16* osize)
     if (rfcomm.channels[ch].flags & RFCOMM_SEND_UA_FLAG) {
         RFCOMM_CLEAR_OUTPUT(ch, RFCOMM_SEND_UA_FLAG);
         rfcomm_output_ua(ch, output, osize);
+    } else if (rfcomm.channels[ch].flags & RFCOMM_SEND_PN_FLAG) {
+        RFCOMM_CLEAR_OUTPUT(ch, RFCOMM_SEND_PN_FLAG);
+        rfcomm_output_pn(ch, output, osize);
+    } else if (rfcomm.channels[ch].flags & RFCOMM_SEND_MSC_FLAG) {
+        RFCOMM_CLEAR_OUTPUT(ch, RFCOMM_SEND_MSC_FLAG);
+        rfcomm_output_msc(ch, output, osize);
     }
 
     if (rfcomm.output_mask) return 1;
@@ -174,11 +246,7 @@ static void rfcomm_output_sabm(u8 ch, u8* output, u16* osize)
 
 static void rfcomm_output_ua(u8 ch, u8* output, u16* osize)
 {
-    if (ch == 0) {
-        output[0] = 3 | (ch << 3);
-    } else {
-        output[0] = 7 | (ch << 3);
-    }
+    output[0] = 3 | (ch << 3);
 
 	output[1] = RFCOMM_UA;
 	output[2] = 1;
@@ -199,5 +267,45 @@ static void rfcomm_output_uih(u8 ch, u8* output, u16* osize)
 {
 }
 
+static void rfcomm_output_pn(u8 ch, u8* output, u16* osize)
+{
+// 
+    output[0] = 3;
+	output[1] = RFCOMM_UIH;
+	output[2] = 0x15;
+
+    output[3] = 0x81;
+    output[4] = 0x11;
+
+    output[5] = rfcomm.mcc.dlci;
+    output[6] = 0xf0;
+    output[7] = 0;
+    output[8] = 0;
+    output[9] = 0;
+    output[10] = 1;
+    output[11] = 0;
+    output[12] = 7;
+
+	output[13] = rfcomm_fcs(output, 2);
+
+    *osize = 14;
+}
+
+static void rfcomm_output_msc(u8 ch, u8* output, u16* osize)
+{
+// 
+    output[0] = 3;
+	output[1] = RFCOMM_UIH;
+	output[2] = 0x15;
+
+    output[3] = 0xe1;
+    output[4] = 0x05;
+    output[5] = 0x1b;
+    output[6] = 0x8d;
+
+	output[7] = rfcomm_fcs(output, 2);
+
+    *osize = 8;
+}
 
 #endif // EXPERIMENTAL
