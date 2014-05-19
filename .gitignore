@@ -38,3 +38,7 @@ bluetooth/include/usrconfig.h
 *.crf
 
 *.d
+
+*.map
+
+*.log

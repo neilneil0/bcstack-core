@@ -30,4 +30,9 @@ void hci_loop(void);
 
 void hci_handle_transport_event(u8 channel, u8* buffer, u16 size);
 
+void bt_uart_tx(const u8* buffer, u16 len);
+void bt_uart_rx(u8* buffer, u16 len);
+void bt_uart_tx_done();
+void bt_uart_rx_done();
+
 #endif //_HCI_H_
