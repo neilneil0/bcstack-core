@@ -90,7 +90,7 @@ void hci_loop(void)
         h4.tx_dma_event = 0;
     h4.tx_dma_ready = 1;
 
-        switch (h4.rxbuf[0]) {
+        switch (h4.txbuf[0]) {
         case H4_COMMAND_PACKET:
             channel = BT_COMMAND_CHANNEL;
             break;

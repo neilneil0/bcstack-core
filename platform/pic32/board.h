@@ -88,7 +88,8 @@ void boardInit(void);
 unsigned long board_getSystemClock(void);
 unsigned long board_getPeripheralClock(void);
 void initBluetoothPort(void);
-static void configureBtUart(uint32_t baudRate, uint8_t enableFlowControl);
+void configureBtUart(uint32_t baudRate, uint8_t enableFlowControl);
+void bt_uart_drain_rx_fifo();
 void  __attribute__((nomips16)) DelayMilliSeconds(unsigned int delaymilsec);
 
 /* Hardware specifics. */

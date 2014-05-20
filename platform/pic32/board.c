@@ -205,7 +205,7 @@ void initBluetoothPort(void)
 
 }
 
-static void configureBtUart(uint32_t baudRate, uint8_t enableFlowControl)
+void configureBtUart(uint32_t baudRate, uint8_t enableFlowControl)
 {
     if (baudRate != 0)
     {
@@ -287,6 +287,14 @@ void bt_uart_rx(u8* buffer, u16 len)
 
     }
     INTRestoreInterrupts(intStatus);
+}
+
+void bt_uart_drain_rx_fifo()
+{
+    while(UARTReceivedDataIsAvailable(BT_UART))
+    {
+     UARTGetDataByte(BT_UART);
+    }
 }
 
 void  __attribute__((nomips16)) DelayMilliSeconds(unsigned int delaymilsec)
