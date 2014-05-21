@@ -289,12 +289,10 @@ void bt_uart_rx(u8* buffer, u16 len)
     INTRestoreInterrupts(intStatus);
 }
 
-void bt_uart_drain_rx_fifo()
+u8 bt_uart_rx_byte()
 {
-    while(UARTReceivedDataIsAvailable(BT_UART))
-    {
-     UARTGetDataByte(BT_UART);
-    }
+    while (!UARTReceivedDataIsAvailable(BT_UART));
+    return UARTGetDataByte(BT_UART);
 }
 
 void  __attribute__((nomips16)) DelayMilliSeconds(unsigned int delaymilsec)
