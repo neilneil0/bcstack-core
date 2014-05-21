@@ -1,0 +1,102 @@
+/*
+  Copyright 2013-2014 bcstack.org
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+#include "board.h"
+#include "bluetooth.h"
+
+static const uint8_t reset[] = {1, 3, 0xc, 0};
+static const uint8_t readver[] = {1, 3, 0x10, 0};
+static const uint8_t anafreq[] = {
+    0x01, 0x00, 0xFC, 0x13, 0xC2, 0x02, 0x00, 0x09, 0x00, 0x00, 0x00,
+    0x03, 0x70, 0x00, 0x00, 0xFE, 0x01, 0x01, 0x00, 0x00, 0x00,
+    0x90, 0x65,
+};
+
+// host interface: h4
+static const uint8_t hostif[] = {
+    0x01, 0x00, 0xFC, 0x13, 0xC2, 0x02, 0x00, 0x09, 0x00, 0x01, 0x00,
+    0x03, 0x70, 0x00, 0x00, 0xF9, 0x01, 0x01, 0x00, 0x00, 0x00,
+    0x03, 0x00,
+};
+
+// H4 parameters = 0x08A8
+static const uint8_t h4cfg[] = {
+    0x01, 0x00, 0xFC, 0x13, 0xC2, 0x02, 0x00, 0x09, 0x00, 0x02, 0x00,
+    0x03, 0x70, 0x00, 0x00, 0xC0, 0x01, 0x01, 0x00, 0x00, 0x00,
+    0xA8, 0x08,
+    };
+static const uint8_t nopdisable[] = {
+    0x01, 0x00, 0xFC, 0x13, 0xC2, 0x02, 0x00, 0x09, 0x00, 0x03, 0x00,
+    0x03, 0x70, 0x00, 0x00, 0xF2, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x01, 0x00,
+};
+static const uint8_t baudrate[] = {
+    0x01, 0x00, 0xFC, 0x15, 0xC2, 0x02, 0x00, 0x0A, 0x00, 0x04, 0x00,
+    0x03, 0x70, 0x00, 0x00, 0xEA, 0x01, 0x02, 0x00, 0x00, 0x00,
+    0x3D, 0x00, 0x00, 0x09,
+};
+static const uint8_t warmreset[] = {
+    0x01, 0x00, 0xFC, 0x13, 0xC2, 0x02, 0x00, 0x09, 0x00, 0x05, 0x00,
+    0x02, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00,
+};
+
+static const u8 reset_rsp[7] = {0x4, 0xe, 0x4, 0x1, 0x3, 0xc, 0};
+static u8 event[7];
+static void recv_event();
+
+void csr_setup( void )
+{
+    int i;
+
+    for (i=0; i<3; i++)
+    {
+        bt_uart_rx(event, 7);
+        bt_uart_tx(reset, 4);
+
+        DelayMilliSeconds(200);
+        if (0 == memcmp(event, reset_rsp, 7)) break;
+    }
+
+    bt_uart_tx(anafreq, sizeof(anafreq)); recv_event();
+    bt_uart_tx(hostif, sizeof(hostif)); recv_event();
+    bt_uart_tx(h4cfg, sizeof(h4cfg)); recv_event();
+    bt_uart_tx(nopdisable, sizeof(nopdisable)); recv_event();
+    bt_uart_tx(baudrate, sizeof(baudrate)); recv_event();
+    bt_uart_tx(warmreset, sizeof(warmreset));
+    DelayMilliSeconds(500);
+    configureBtUart(BT_UART_WORKING_BAUD_RATE, 1);
+
+    // verify
+    bt_uart_tx(readver, 4);
+    recv_event();
+}
+
+static void recv_event()
+{
+    u8 i, len;
+
+    memset(event, 0, 20);
+
+    for (i=0; i<3; i++) {
+        event[i] = bt_uart_rx_byte();
+    }
+
+    // data
+    for (i=0; i<event[2]; i++) {
+        event[i+3] = bt_uart_rx_byte();
+    }
+}
