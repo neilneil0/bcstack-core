@@ -1,8 +1,8 @@
-APP = printattrs
+APP = demo
 PLATFORM = linux
 DEBUG = y
 PROGRAM = bcstack
-TRANSPORT = null
+TRANSPORT = usb
 
 CC = gcc
 LD = gcc

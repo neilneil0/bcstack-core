@@ -41,6 +41,8 @@ static struct {
         u8 set_adv_params : 1;
         u8 set_adv_data : 1;
         u8 set_adv_en : 1;
+        u8 write_local_name : 1;
+        u8 write_eir : 1;
         u8 write_scan_en : 1;
         u8 accept_conn : 1;
         u8 io_cap_reply : 1;
@@ -162,25 +164,18 @@ static void hci_send_command(u8* buffer, u16 size)
             memcpy(buffer, le_set_adv_params, sizeof(le_set_adv_params));
             send_cmd = 1;
         } else if (hci.tasks.set_adv_data) {
-            /* TODO
-               generate adv data dynamically from device name etc.
-               now use handcoded data for test!
-            */
-            static const u8 le_set_adv_data[] = {
-                8, 0x20, 32,
-                9, // ADV Data Len
-                8, // Length
-                9, // AD Type (Complete Name)
-                'B', 'T', '-', 'D', 'E', 'M', 'O', // Data (7 bytes)
-                0,0,0,0,0,
-                0,0,0,0,0,
-                0,0,0,0,0,
-                0,0,0,0,0,
-                0,0,
-            };
             hci.tasks.set_adv_data = 0;
 
-            memcpy(buffer, le_set_adv_data, sizeof(le_set_adv_data));
+            buffer[0] = 8;
+            buffer[1] = 0x20;
+            buffer[2] = 32;
+            memset(buffer + 3, 0, 32);
+
+            buffer[3] = sizeof(CFG_DEVICE_NAME) + 3; // adv data len
+            buffer[4] = sizeof(CFG_DEVICE_NAME) + 2; // adv element len
+            buffer[5] = 9; // type: complete name
+            memcpy(buffer + 6, CFG_DEVICE_NAME, sizeof(CFG_DEVICE_NAME));
+
             send_cmd = 1;
         } else if (hci.tasks.set_adv_en) {
             static const u8 le_set_adv_en[] = {0xA, 0x20, 1, 1};
@@ -198,6 +193,31 @@ static void hci_send_command(u8* buffer, u16 size)
             send_cmd = 1;
 
             hci_printf("adv_en = %x\n", buffer[3]);
+        } else if (hci.tasks.write_local_name) {
+            hci.tasks.write_local_name = 0;
+
+            buffer[0] = 0x13;
+            buffer[1] = 0xC;
+            buffer[2] = 248;
+
+            strncpy(buffer + 3, CFG_DEVICE_NAME, 248);
+
+            send_cmd = 1;
+        } else if (hci.tasks.write_eir) {
+            hci.tasks.write_eir = 0;
+
+            buffer[0] = 0x52;
+            buffer[1] = 0xC;
+            buffer[2] = 241;
+            buffer[3] = 1; // FEC required
+            memset(buffer + 4, 0, 240);
+
+            // EIR Element: complete local name
+            buffer[4] = sizeof(CFG_DEVICE_NAME) + 1;
+            buffer[5] = 9;
+            memcpy(buffer + 6, CFG_DEVICE_NAME, sizeof(CFG_DEVICE_NAME));
+
+            send_cmd = 1;
         } else if (hci.tasks.write_scan_en) {
             static const u8 hci_write_scan_en[] = {0x1A, 0xC, 1, 0};
 
@@ -515,6 +535,8 @@ void gap_reset()
     hci.curr_reset_cmd = hci_reset_seq;
     hci.tasks.set_adv_params = 1;
     hci.tasks.set_adv_data = 1;
+    hci.tasks.write_local_name = 1;
+    hci.tasks.write_eir = 1;
 
     hci_write_later(BT_COMMAND_CHANNEL);
 }

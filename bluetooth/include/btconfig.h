@@ -17,6 +17,10 @@
 #ifndef _BTCONFIG_H_
 #define _BTCONFIG_H_
 
+/*** General Configurations ***/
+
+#define CFG_DEVICE_NAME "bcstack-demo"
+
 /*** Debugging ***/
 #define DEBUG_USER       0
 #define DEBUG_BCSP       0
@@ -46,10 +50,10 @@
 /*** UART transport configurations ***/
 
 // Host 2 Controller MTU
-#define CFG_HCI_UART_MTU_H2C 128
+#define CFG_HCI_UART_MTU_H2C 256
 
 // Controller 2 Host MTU
-#define CFG_HCI_UART_MTU_C2H 128
+#define CFG_HCI_UART_MTU_C2H 256
 
 /*** USB transport configurations ***/
 
