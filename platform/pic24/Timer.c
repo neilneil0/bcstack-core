@@ -1,12 +1,12 @@
 #include <xc.h>
 
 /************************************************
-Function Name: void Timer1_Intit(void)
+Function Name: void Timer1_Init(void)
 Description:   Initial the Timer1,FOSC=8MHz. T1CLK = 8/2=4MHz    T1 Tips = 10ms
 Inputs:        None
 Returns:       None
 *************************************************/
-void Timer1_Intit(void)
+void Timer1_Init(void)
 {
     T1CON = 0x0000;
     T1CONbits.TON = 1;
@@ -19,12 +19,12 @@ void Timer1_Intit(void)
 }
 
 /************************************************
-Function Name: void Timer2_Intit(void)
+Function Name: void Timer2_Init(void)
 Description:   Initial the Timer2
 Inputs:        None
 Returns:       None
 *************************************************/
-void Timer2_Intit(void)
+void Timer2_Init(void)
 {
 
 }

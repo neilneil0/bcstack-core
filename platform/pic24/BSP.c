@@ -17,7 +17,6 @@
 9 VDD Main power supply----------------------------------------------------------->      3.3V
 10 GND Power ground--------------------------------------------------------------->      GND
  **********************************************************************************************************************/
-extern unsigned char datareceived;
 
 #define SPI_MASTER  0x0120	// select 8-bit master mode, CKE=1, CKP=0
 #define SPI_ENABLE  0x8000	// enable SPI port, clear status
@@ -176,13 +175,12 @@ void System_Init(void)
 {
     Oscillator_Set();
     SPI1_Init();
-    INT1_Init();
-    Timer1_Intit();
+    Timer1_Init();
 }
 
 void Bluetooth_Start(void)
 {
-    int i;
+    long i;
 
     // disable all the I/O analog function
     AD1PCFG = 0xffff;
@@ -200,7 +198,10 @@ void Bluetooth_Start(void)
     RST_TRIS = 0;
     RST_Enable();
 
-    for(i =0x0000; i < 200000; i ++);
+    for(i =0x0000; i < 1000000; i ++);
+    //JG. it seems the result pulse is too short
+    // I have to break on the RST_Release to create a long pulse.
+    INT1_Init();
 
     RST_Release();
 }

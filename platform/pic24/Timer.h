@@ -2,7 +2,7 @@
 #define	TIMER_H
 
 
-extern void Timer1_Intit(void);
+extern void Timer1_Init(void);
 
 #ifdef	__cplusplus
 extern "C" {

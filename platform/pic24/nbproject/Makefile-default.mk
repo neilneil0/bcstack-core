@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=BSP.c Interrupt.c main.c Timer.c em9301.c ../../bluetooth/stack/gatt/accel-service.c ../../bluetooth/stack/gatt/battery-service.c ../../bluetooth/stack/gatt/blood-pressure-service.c ../../bluetooth/stack/gatt/devinfo-service.c ../../bluetooth/stack/gatt/gatt.c ../../bluetooth/stack/gatt/led-service.c ../../bluetooth/stack/hci/hcid.c ../../bluetooth/stack/l2cap/l2cap.c ../../bluetooth/stack/rfcomm/rfcomm.c ../../bluetooth/stack/rfcomm/spp.c ../../bluetooth/stack/sdp/sdp.c ../../bluetooth/stack/vport/vport.c ../../bluetooth/utils/debug.c ../../apps/demo/btdemo.c
+SOURCEFILES_QUOTED_IF_SPACED=../../bluetooth/stack/gatt/accel-service.c ../../bluetooth/stack/gatt/battery-service.c ../../bluetooth/stack/gatt/blood-pressure-service.c ../../bluetooth/stack/gatt/devinfo-service.c ../../bluetooth/stack/gatt/gatt.c ../../bluetooth/stack/gatt/led-service.c ../../bluetooth/stack/hci/hcid.c ../../bluetooth/stack/l2cap/l2cap.c ../../bluetooth/stack/rfcomm/rfcomm.c ../../bluetooth/stack/rfcomm/spp.c ../../bluetooth/stack/sdp/sdp.c ../../bluetooth/stack/vport/vport.c ../../bluetooth/utils/debug.c BSP.c Interrupt.c main.c Timer.c em9301.c ../../apps/demo/btdemo.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/BSP.o ${OBJECTDIR}/Interrupt.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Timer.o ${OBJECTDIR}/em9301.o ${OBJECTDIR}/_ext/1614121890/accel-service.o ${OBJECTDIR}/_ext/1614121890/battery-service.o ${OBJECTDIR}/_ext/1614121890/blood-pressure-service.o ${OBJECTDIR}/_ext/1614121890/devinfo-service.o ${OBJECTDIR}/_ext/1614121890/gatt.o ${OBJECTDIR}/_ext/1614121890/led-service.o ${OBJECTDIR}/_ext/1853184774/hcid.o ${OBJECTDIR}/_ext/1498628348/l2cap.o ${OBJECTDIR}/_ext/1006972936/rfcomm.o ${OBJECTDIR}/_ext/1006972936/spp.o ${OBJECTDIR}/_ext/1853195383/sdp.o ${OBJECTDIR}/_ext/1487534033/vport.o ${OBJECTDIR}/_ext/762655856/debug.o ${OBJECTDIR}/_ext/235100608/btdemo.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/BSP.o.d ${OBJECTDIR}/Interrupt.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Timer.o.d ${OBJECTDIR}/em9301.o.d ${OBJECTDIR}/_ext/1614121890/accel-service.o.d ${OBJECTDIR}/_ext/1614121890/battery-service.o.d ${OBJECTDIR}/_ext/1614121890/blood-pressure-service.o.d ${OBJECTDIR}/_ext/1614121890/devinfo-service.o.d ${OBJECTDIR}/_ext/1614121890/gatt.o.d ${OBJECTDIR}/_ext/1614121890/led-service.o.d ${OBJECTDIR}/_ext/1853184774/hcid.o.d ${OBJECTDIR}/_ext/1498628348/l2cap.o.d ${OBJECTDIR}/_ext/1006972936/rfcomm.o.d ${OBJECTDIR}/_ext/1006972936/spp.o.d ${OBJECTDIR}/_ext/1853195383/sdp.o.d ${OBJECTDIR}/_ext/1487534033/vport.o.d ${OBJECTDIR}/_ext/762655856/debug.o.d ${OBJECTDIR}/_ext/235100608/btdemo.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1614121890/accel-service.o ${OBJECTDIR}/_ext/1614121890/battery-service.o ${OBJECTDIR}/_ext/1614121890/blood-pressure-service.o ${OBJECTDIR}/_ext/1614121890/devinfo-service.o ${OBJECTDIR}/_ext/1614121890/gatt.o ${OBJECTDIR}/_ext/1614121890/led-service.o ${OBJECTDIR}/_ext/1853184774/hcid.o ${OBJECTDIR}/_ext/1498628348/l2cap.o ${OBJECTDIR}/_ext/1006972936/rfcomm.o ${OBJECTDIR}/_ext/1006972936/spp.o ${OBJECTDIR}/_ext/1853195383/sdp.o ${OBJECTDIR}/_ext/1487534033/vport.o ${OBJECTDIR}/_ext/762655856/debug.o ${OBJECTDIR}/BSP.o ${OBJECTDIR}/Interrupt.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Timer.o ${OBJECTDIR}/em9301.o ${OBJECTDIR}/_ext/235100608/btdemo.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1614121890/accel-service.o.d ${OBJECTDIR}/_ext/1614121890/battery-service.o.d ${OBJECTDIR}/_ext/1614121890/blood-pressure-service.o.d ${OBJECTDIR}/_ext/1614121890/devinfo-service.o.d ${OBJECTDIR}/_ext/1614121890/gatt.o.d ${OBJECTDIR}/_ext/1614121890/led-service.o.d ${OBJECTDIR}/_ext/1853184774/hcid.o.d ${OBJECTDIR}/_ext/1498628348/l2cap.o.d ${OBJECTDIR}/_ext/1006972936/rfcomm.o.d ${OBJECTDIR}/_ext/1006972936/spp.o.d ${OBJECTDIR}/_ext/1853195383/sdp.o.d ${OBJECTDIR}/_ext/1487534033/vport.o.d ${OBJECTDIR}/_ext/762655856/debug.o.d ${OBJECTDIR}/BSP.o.d ${OBJECTDIR}/Interrupt.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Timer.o.d ${OBJECTDIR}/em9301.o.d ${OBJECTDIR}/_ext/235100608/btdemo.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/BSP.o ${OBJECTDIR}/Interrupt.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Timer.o ${OBJECTDIR}/em9301.o ${OBJECTDIR}/_ext/1614121890/accel-service.o ${OBJECTDIR}/_ext/1614121890/battery-service.o ${OBJECTDIR}/_ext/1614121890/blood-pressure-service.o ${OBJECTDIR}/_ext/1614121890/devinfo-service.o ${OBJECTDIR}/_ext/1614121890/gatt.o ${OBJECTDIR}/_ext/1614121890/led-service.o ${OBJECTDIR}/_ext/1853184774/hcid.o ${OBJECTDIR}/_ext/1498628348/l2cap.o ${OBJECTDIR}/_ext/1006972936/rfcomm.o ${OBJECTDIR}/_ext/1006972936/spp.o ${OBJECTDIR}/_ext/1853195383/sdp.o ${OBJECTDIR}/_ext/1487534033/vport.o ${OBJECTDIR}/_ext/762655856/debug.o ${OBJECTDIR}/_ext/235100608/btdemo.o
+OBJECTFILES=${OBJECTDIR}/_ext/1614121890/accel-service.o ${OBJECTDIR}/_ext/1614121890/battery-service.o ${OBJECTDIR}/_ext/1614121890/blood-pressure-service.o ${OBJECTDIR}/_ext/1614121890/devinfo-service.o ${OBJECTDIR}/_ext/1614121890/gatt.o ${OBJECTDIR}/_ext/1614121890/led-service.o ${OBJECTDIR}/_ext/1853184774/hcid.o ${OBJECTDIR}/_ext/1498628348/l2cap.o ${OBJECTDIR}/_ext/1006972936/rfcomm.o ${OBJECTDIR}/_ext/1006972936/spp.o ${OBJECTDIR}/_ext/1853195383/sdp.o ${OBJECTDIR}/_ext/1487534033/vport.o ${OBJECTDIR}/_ext/762655856/debug.o ${OBJECTDIR}/BSP.o ${OBJECTDIR}/Interrupt.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Timer.o ${OBJECTDIR}/em9301.o ${OBJECTDIR}/_ext/235100608/btdemo.o
 
 # Source Files
-SOURCEFILES=BSP.c Interrupt.c main.c Timer.c em9301.c ../../bluetooth/stack/gatt/accel-service.c ../../bluetooth/stack/gatt/battery-service.c ../../bluetooth/stack/gatt/blood-pressure-service.c ../../bluetooth/stack/gatt/devinfo-service.c ../../bluetooth/stack/gatt/gatt.c ../../bluetooth/stack/gatt/led-service.c ../../bluetooth/stack/hci/hcid.c ../../bluetooth/stack/l2cap/l2cap.c ../../bluetooth/stack/rfcomm/rfcomm.c ../../bluetooth/stack/rfcomm/spp.c ../../bluetooth/stack/sdp/sdp.c ../../bluetooth/stack/vport/vport.c ../../bluetooth/utils/debug.c ../../apps/demo/btdemo.c
+SOURCEFILES=../../bluetooth/stack/gatt/accel-service.c ../../bluetooth/stack/gatt/battery-service.c ../../bluetooth/stack/gatt/blood-pressure-service.c ../../bluetooth/stack/gatt/devinfo-service.c ../../bluetooth/stack/gatt/gatt.c ../../bluetooth/stack/gatt/led-service.c ../../bluetooth/stack/hci/hcid.c ../../bluetooth/stack/l2cap/l2cap.c ../../bluetooth/stack/rfcomm/rfcomm.c ../../bluetooth/stack/rfcomm/spp.c ../../bluetooth/stack/sdp/sdp.c ../../bluetooth/stack/vport/vport.c ../../bluetooth/utils/debug.c BSP.c Interrupt.c main.c Timer.c em9301.c ../../apps/demo/btdemo.c
 
 
 CFLAGS=
@@ -79,41 +79,6 @@ MP_LINKER_FILE_OPTION=,--script=p24FJ64GA104.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/BSP.o: BSP.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/BSP.o.d 
-	@${RM} ${OBJECTDIR}/BSP.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  BSP.c  -o ${OBJECTDIR}/BSP.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/BSP.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/BSP.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/Interrupt.o: Interrupt.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/Interrupt.o.d 
-	@${RM} ${OBJECTDIR}/Interrupt.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Interrupt.c  -o ${OBJECTDIR}/Interrupt.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Interrupt.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/Interrupt.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/main.o.d 
-	@${RM} ${OBJECTDIR}/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/Timer.o: Timer.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/Timer.o.d 
-	@${RM} ${OBJECTDIR}/Timer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Timer.c  -o ${OBJECTDIR}/Timer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Timer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/Timer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/em9301.o: em9301.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/em9301.o.d 
-	@${RM} ${OBJECTDIR}/em9301.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  em9301.c  -o ${OBJECTDIR}/em9301.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/em9301.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/em9301.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/_ext/1614121890/accel-service.o: ../../bluetooth/stack/gatt/accel-service.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1614121890 
 	@${RM} ${OBJECTDIR}/_ext/1614121890/accel-service.o.d 
@@ -205,6 +170,41 @@ ${OBJECTDIR}/_ext/762655856/debug.o: ../../bluetooth/utils/debug.c  nbproject/Ma
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../bluetooth/utils/debug.c  -o ${OBJECTDIR}/_ext/762655856/debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/762655856/debug.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/762655856/debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/BSP.o: BSP.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/BSP.o.d 
+	@${RM} ${OBJECTDIR}/BSP.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  BSP.c  -o ${OBJECTDIR}/BSP.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/BSP.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/BSP.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Interrupt.o: Interrupt.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/Interrupt.o.d 
+	@${RM} ${OBJECTDIR}/Interrupt.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Interrupt.c  -o ${OBJECTDIR}/Interrupt.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Interrupt.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Interrupt.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/main.o.d 
+	@${RM} ${OBJECTDIR}/main.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Timer.o: Timer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/Timer.o.d 
+	@${RM} ${OBJECTDIR}/Timer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Timer.c  -o ${OBJECTDIR}/Timer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Timer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Timer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/em9301.o: em9301.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/em9301.o.d 
+	@${RM} ${OBJECTDIR}/em9301.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  em9301.c  -o ${OBJECTDIR}/em9301.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/em9301.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/em9301.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 ${OBJECTDIR}/_ext/235100608/btdemo.o: ../../apps/demo/btdemo.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/235100608 
 	@${RM} ${OBJECTDIR}/_ext/235100608/btdemo.o.d 
@@ -213,41 +213,6 @@ ${OBJECTDIR}/_ext/235100608/btdemo.o: ../../apps/demo/btdemo.c  nbproject/Makefi
 	@${FIXDEPS} "${OBJECTDIR}/_ext/235100608/btdemo.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
-${OBJECTDIR}/BSP.o: BSP.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/BSP.o.d 
-	@${RM} ${OBJECTDIR}/BSP.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  BSP.c  -o ${OBJECTDIR}/BSP.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/BSP.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/BSP.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/Interrupt.o: Interrupt.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/Interrupt.o.d 
-	@${RM} ${OBJECTDIR}/Interrupt.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Interrupt.c  -o ${OBJECTDIR}/Interrupt.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Interrupt.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/Interrupt.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/main.o.d 
-	@${RM} ${OBJECTDIR}/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/Timer.o: Timer.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/Timer.o.d 
-	@${RM} ${OBJECTDIR}/Timer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Timer.c  -o ${OBJECTDIR}/Timer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Timer.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/Timer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/em9301.o: em9301.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/em9301.o.d 
-	@${RM} ${OBJECTDIR}/em9301.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  em9301.c  -o ${OBJECTDIR}/em9301.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/em9301.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/em9301.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/_ext/1614121890/accel-service.o: ../../bluetooth/stack/gatt/accel-service.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1614121890 
 	@${RM} ${OBJECTDIR}/_ext/1614121890/accel-service.o.d 
@@ -338,6 +303,41 @@ ${OBJECTDIR}/_ext/762655856/debug.o: ../../bluetooth/utils/debug.c  nbproject/Ma
 	@${RM} ${OBJECTDIR}/_ext/762655856/debug.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../bluetooth/utils/debug.c  -o ${OBJECTDIR}/_ext/762655856/debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/762655856/debug.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/762655856/debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/BSP.o: BSP.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/BSP.o.d 
+	@${RM} ${OBJECTDIR}/BSP.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  BSP.c  -o ${OBJECTDIR}/BSP.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/BSP.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/BSP.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Interrupt.o: Interrupt.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/Interrupt.o.d 
+	@${RM} ${OBJECTDIR}/Interrupt.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Interrupt.c  -o ${OBJECTDIR}/Interrupt.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Interrupt.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Interrupt.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/main.o.d 
+	@${RM} ${OBJECTDIR}/main.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Timer.o: Timer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/Timer.o.d 
+	@${RM} ${OBJECTDIR}/Timer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Timer.c  -o ${OBJECTDIR}/Timer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Timer.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Timer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/em9301.o: em9301.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/em9301.o.d 
+	@${RM} ${OBJECTDIR}/em9301.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  em9301.c  -o ${OBJECTDIR}/em9301.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/em9301.o.d"        -g -omf=elf -O0 -I"../../bluetooth/include" -DINIT_CMD_NUM=1 -DEM9301=1 -DDISABLE_BT_CLASSICAL=1 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/em9301.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/_ext/235100608/btdemo.o: ../../apps/demo/btdemo.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/235100608 
