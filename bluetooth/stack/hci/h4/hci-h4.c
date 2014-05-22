@@ -88,7 +88,7 @@ void hci_loop(void)
 
     if (h4.tx_dma_event) {
         h4.tx_dma_event = 0;
-    h4.tx_dma_ready = 1;
+        h4.tx_dma_ready = 1;
 
         switch (h4.txbuf[0]) {
         case H4_COMMAND_PACKET:
